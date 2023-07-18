@@ -13,7 +13,7 @@
 	</properties>
 
 	<modules>
-		<module>employee-service-three</module>
+		<module>employee-service</module>
 	</modules>
 	
 </project>
