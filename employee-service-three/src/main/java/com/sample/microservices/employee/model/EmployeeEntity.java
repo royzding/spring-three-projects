@@ -1,4 +1,4 @@
-package com.spring.microservices.three.employee.model;
+package com.sample.microservices.employee.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

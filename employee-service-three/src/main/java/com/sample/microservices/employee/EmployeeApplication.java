@@ -1,4 +1,4 @@
-package com.spring.microservices.three.employee;
+package com.sample.microservices.employee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

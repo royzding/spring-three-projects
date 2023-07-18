@@ -1,4 +1,4 @@
-package com.spring.microservices.three.employee.controller;
+package com.sample.microservices.employee.controller;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.microservices.three.employee.model.EmployeeEntity;
-import com.spring.microservices.three.employee.service.EmployeeService;
+import com.sample.microservices.employee.model.EmployeeEntity;
+import com.sample.microservices.employee.service.EmployeeService;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
