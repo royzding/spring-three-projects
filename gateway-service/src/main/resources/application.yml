@@ -26,13 +26,16 @@ spring:
         uri: lb://employee-service
         predicates:
         - Path=/employee/**
-        
-      - id: employee-swagger
-        uri: lb://EMPLOYEE-SERVICE
+        filters:
+        - RewritePath=/employee/(?<path>.*), /$\{path}
+
+      - id: openapi
+        uri: http://localhost:${server.port}
         predicates:
-        - Path=/v3/api-docs/employee/**
+        - Path=/v3/api-docs/**
         filters:
         - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+        
 
 eureka:
   client:
@@ -46,10 +49,11 @@ eureka:
     instance-id: ${spring.application.name}:${server.port}         
 
 springdoc:
-  api-docs:
-    path: /v3/api-docs
   swagger-ui:
     path: /
+    urls:
+      - name: employee
+        url: /v3/api-docs/employee
 
 management:
   tracing:

@@ -13,7 +13,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @OpenAPIDefinition(
 		servers = { 
 			@Server(url = "http://localhost:8082/employee"),
-			@Server(url = "http://localhost:8083/employee") 
+			@Server(url = "http://localhost:8083/") 
 		}, 
 		info = @Info(title = "employee-service", 
 		version = "v3", 
