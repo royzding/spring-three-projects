@@ -34,3 +34,6 @@ public class EmployeeEntity {
 	  private Double salary;
 	
 }
+
+//https://medium.com/the-soft-tradeoff/jpa-attribute-converters-are-great-dont-use-attribute-converters-8e08ea5fa797
+//JPA attribute converters
