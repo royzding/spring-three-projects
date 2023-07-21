@@ -1,4 +1,4 @@
-package com.sample.microservices.common.dao.model;
+package com.sample.microservices.common.model.dao;
 
 import java.io.Serializable;
 

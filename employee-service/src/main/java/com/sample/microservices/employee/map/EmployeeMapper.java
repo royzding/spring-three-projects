@@ -7,8 +7,8 @@ import org.mapstruct.Mapping;
 import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.springframework.stereotype.Component;
 
-import com.sample.microservices.employee.dao.model.EmployeeEntity;
-import com.sample.microservices.employee.dto.model.Employee;
+import com.sample.microservices.employee.model.dao.EmployeeEntity;
+import com.sample.microservices.employee.model.dto.Employee;
 
 @Component
 @Mapper(componentModel="spring", nullValuePropertyMappingStrategy=NullValuePropertyMappingStrategy.IGNORE)

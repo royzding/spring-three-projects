@@ -2,6 +2,8 @@ package com.sample.microservices.employee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
@@ -10,6 +12,8 @@ import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.servers.Server;
 
 @SpringBootApplication(scanBasePackages= {"com.sample.microservices.employee","com.sample.microservices.common"})
+@EnableDiscoveryClient
+@EnableFeignClients
 @OpenAPIDefinition(
 		servers = { 
 			@Server(url = "http://localhost:8082/employee"),

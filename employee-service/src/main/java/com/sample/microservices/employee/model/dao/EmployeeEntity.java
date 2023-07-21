@@ -1,6 +1,6 @@
-package com.sample.microservices.employee.dao.model;
+package com.sample.microservices.employee.model.dao;
 
-import com.sample.microservices.common.dao.model.BaseEntity;
+import com.sample.microservices.common.model.dao.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

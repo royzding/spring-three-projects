@@ -1,4 +1,4 @@
-package com.sample.microservices.employee.dto.model;
+package com.sample.microservices.employee.model.dto;
 
 import lombok.Data;
 

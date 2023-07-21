@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sample.microservices.employee.dto.model.Employee;
+import com.sample.microservices.employee.model.dto.Employee;
 import com.sample.microservices.employee.service.EmployeeService;
 
 @CrossOrigin(origins = "http://localhost:8081")

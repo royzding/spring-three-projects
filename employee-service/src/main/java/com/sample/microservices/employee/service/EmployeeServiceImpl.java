@@ -5,9 +5,9 @@ import java.util.List;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
-import com.sample.microservices.employee.dao.model.EmployeeEntity;
-import com.sample.microservices.employee.dto.model.Employee;
 import com.sample.microservices.employee.map.EmployeeMapper;
+import com.sample.microservices.employee.model.dao.EmployeeEntity;
+import com.sample.microservices.employee.model.dto.Employee;
 import com.sample.microservices.employee.repository.EmployeeEntityRepository;
 
 @Service
