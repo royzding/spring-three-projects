@@ -1,10 +1,9 @@
-package com.sample.microservices.employee.model;
+package com.sample.microservices.employee.dao.model;
+
+import com.sample.microservices.common.dao.model.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.Getter;
@@ -16,15 +15,11 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class EmployeeEntity {
+public class EmployeeEntity extends BaseEntity {
 	
 	  private static final long serialVersionUID = 2L;
 	
-	  @Id
-	  @GeneratedValue(strategy = GenerationType.AUTO)
-	  private long id;
-	  
-	  @Column(name = "dep_id")
+   	  @Column(name = "dep_id")
 	  private Integer depId;
 	    
 	  @Column(name = "manager_id")

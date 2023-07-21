@@ -21,6 +21,7 @@
     	<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     	<mockito-core.version>5.4.0</mockito-core.version>
     	<h2.version>2.2.220</h2.version>
+    	<common-ware.version>3.0.0</common-ware.version>    
                 
         <sonar.projectKey>sample-microservices-pkey</sonar.projectKey>
         <sonar.organization>com.sample</sonar.organization>
@@ -30,6 +31,7 @@
     <modules>
         <module>discovery-service</module>
         <module>gateway-service</module>
+        <module>common-ware</module>
         <module>employee-service</module>
     </modules>
 
@@ -43,6 +45,17 @@
                 <scope>import</scope>
             </dependency>
             
+			<dependency>
+			    <groupId>org.springdoc</groupId>
+			    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+	            <version>${springdoc.version}</version>
+			</dependency>
+			
+	        <dependency>
+	            <groupId>org.springdoc</groupId>
+	            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+	            <version>${springdoc.version}</version>
+	        </dependency>
 	        <dependency>
 	            <groupId>org.springdoc</groupId>
 	            <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
@@ -74,6 +87,12 @@
 				<version>${h2.version}</version>
 			</dependency>
 
+	        <dependency>
+	            <groupId>com.sample.microservices</groupId>
+	            <artifactId>common-ware</artifactId>
+				<version>${common-ware.version}</version>
+	        </dependency>
+
 
         </dependencies>
     </dependencyManagement>
@@ -84,6 +103,24 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            
+	        <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <configuration>
+	                <source>17</source> <!-- depending on your project -->
+	                <target>17</target> <!-- depending on your project -->
+	                <annotationProcessorPaths>
+	                    <path>
+	                        <groupId>org.mapstruct</groupId>
+	                        <artifactId>mapstruct-processor</artifactId>
+	                        <version>${org.mapstruct.version}</version>
+	                    </path>
+	                    <!-- other annotation processors -->
+	                </annotationProcessorPaths>
+	            </configuration>
+	        </plugin>
+
         </plugins>
     </build>
 

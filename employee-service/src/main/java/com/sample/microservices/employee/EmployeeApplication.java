@@ -9,7 +9,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.servers.Server;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages= {"com.sample.microservices.employee","com.sample.microservices.common"})
 @OpenAPIDefinition(
 		servers = { 
 			@Server(url = "http://localhost:8082/employee"),

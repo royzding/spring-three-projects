@@ -2,10 +2,10 @@ package com.sample.microservices.employee.service;
 
 import java.util.List;
 
-import com.sample.microservices.employee.model.EmployeeEntity;
+import com.sample.microservices.employee.dto.model.Employee;
  
 public interface EmployeeService
 {
-    List<EmployeeEntity> getAllEmployees();
+    List<Employee> getAllEmployees();
     
 }

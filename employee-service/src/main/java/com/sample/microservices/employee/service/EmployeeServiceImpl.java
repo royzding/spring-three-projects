@@ -2,23 +2,31 @@ package com.sample.microservices.employee.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
-import com.sample.microservices.employee.model.EmployeeEntity;
+import com.sample.microservices.employee.dao.model.EmployeeEntity;
+import com.sample.microservices.employee.dto.model.Employee;
+import com.sample.microservices.employee.map.EmployeeMapper;
 import com.sample.microservices.employee.repository.EmployeeEntityRepository;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    @Autowired
-    EmployeeEntityRepository employeeEntityRepo;
+    private final EmployeeEntityRepository employeeRepository;
+    
+    private final EmployeeMapper employeeMapper;
+    
+    public EmployeeServiceImpl(final EmployeeEntityRepository employeeRepository, final EmployeeMapper employeeMapper) {
+    	this.employeeRepository = employeeRepository;
+    	this.employeeMapper = employeeMapper;
+    }
 
 	@Override
-	public List<EmployeeEntity> getAllEmployees() {
+	public List<Employee> getAllEmployees() {
 		
-		List<EmployeeEntity> entities = this.employeeEntityRepo.findAll();
+		List<EmployeeEntity> entities = this.employeeRepository.findAll();
 				
-		return entities;
+		return this.employeeMapper.entityToEmployee(entities);
 	}
 }
