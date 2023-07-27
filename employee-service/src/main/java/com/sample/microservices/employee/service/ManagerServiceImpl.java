@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import com.sample.microservices.common.model.Manager;
-import com.sample.microservices.common.model.UserInfoStore;
 import com.sample.microservices.common.pagination.PageLayout;
 import com.sample.microservices.employee.enums.ManagerSortType;
 import com.sample.microservices.employee.map.ManagerMapper;

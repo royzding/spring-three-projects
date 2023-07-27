@@ -99,7 +99,9 @@
 		<dependency>
 			<groupId>com.sample.microservices</groupId>
 			<artifactId>common-ware</artifactId>
+			<version>${common-ware.version}</version>
 		</dependency>
+		
     </dependencies>
 
     <build>

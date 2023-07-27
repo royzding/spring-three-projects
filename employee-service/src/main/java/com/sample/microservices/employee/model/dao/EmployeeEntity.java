@@ -1,6 +1,6 @@
 package com.sample.microservices.employee.model.dao;
 
-import com.sample.microservices.common.model.dao.BaseEntity;
+import com.sample.microservices.common.model.dao.ParentEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,7 +15,7 @@ import lombok.Setter;
 @Data
 @Getter
 @Setter
-public class EmployeeEntity extends BaseEntity {
+public class EmployeeEntity extends ParentEntity {
 	
 	  private static final long serialVersionUID = 2L;
 	

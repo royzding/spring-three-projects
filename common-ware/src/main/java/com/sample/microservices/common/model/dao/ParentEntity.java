@@ -15,7 +15,7 @@ import lombok.Data;
 @MappedSuperclass
 @Data
 @EntityListeners(EntityListener.class)
-public class BaseEntity implements Serializable {
+public class ParentEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
