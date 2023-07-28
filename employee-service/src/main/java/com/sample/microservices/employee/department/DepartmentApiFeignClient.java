@@ -8,14 +8,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.sample.microservices.common.model.Department;
 
-//@FeignClient(name = "DEPARTMENT-SERVICE")//, url="http://localhost:8084/")
-@FeignClient(name = "DEPARTMENT-SERVICE", url="http://localhost:8084/")
+@FeignClient(name = "DEPARTMENT-SERVICE")//, url="http://localhost:8084/")
+//@FeignClient(name = "DEPARTMENT-SERVICE", url="http://localhost:8084/")
 public interface DepartmentApiFeignClient {
 
-	@GetMapping("/department/department-controller/{id}")
+	@GetMapping("/department-controller/{id}")
 	Department getDepartmentById(@PathVariable("id") Long id);
 	
-	@GetMapping("/department/department-controller/all")
+	@GetMapping("/department-controller/all")
 	List<Department> getAllDepartments();
 	
 }

@@ -4,31 +4,36 @@ import com.sample.microservices.common.model.dao.ParentEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table(name="employee")
 
-@Data
 @Getter
 @Setter
 public class EmployeeEntity extends ParentEntity {
 	
-	  private static final long serialVersionUID = 2L;
+	private static final long serialVersionUID = 2L;
 	
-   	  @Column(name = "dep_id")
-	  private Integer depId;
-	    
-	  @Column(name = "manager_id")
-	  private Integer managerId;
-	    
-	  @Column(name = "salary")
-	  private Double salary;
+	@Column(name="salary")
+	private Double salary;
+	
+	@Column(name="dep_id")
+	private Long depId;
+
+/*	
+	@Column(name="dep_type")
+	@Enumerated(EnumType.STRING)
+	private DepartmentType departmentType;
+*/
+	
+	@OneToOne
+	@JoinColumn(name="manager_id")
+	private ManagerEntity managerEntity;
+	
 	
 }
-
-//https://medium.com/the-soft-tradeoff/jpa-attribute-converters-are-great-dont-use-attribute-converters-8e08ea5fa797
-//JPA attribute converters

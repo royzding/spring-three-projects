@@ -2,6 +2,8 @@ package com.sample.microservices.common.model;
 
 import java.util.Set;
 
+import org.springframework.stereotype.Component;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +19,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Component
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
