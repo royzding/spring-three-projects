@@ -11,7 +11,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.servers.Server;
 
-@SpringBootApplication(scanBasePackages= {"com.sample.microservices.employee","com.sample.microservices.common","com.sample.microservices.common.model"})
+@SpringBootApplication(scanBasePackages= {"com.sample.microservices.employee.*","com.sample.microservices.common.*"})
 @EnableDiscoveryClient
 @EnableFeignClients
 @OpenAPIDefinition(
