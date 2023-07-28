@@ -1,0 +1,77 @@
+server:
+  port: 8084
+
+spring:
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: department-service
+    
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: c##ding
+    password: peardoor807x
+    
+    hikari:
+      connection-timeout: 250000
+      idle-timeout: 300000
+      max-lifetime: 1000000
+      maximum-pool-size: 24    
+
+jpa:
+  hibernate:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    ddl-auto: none
+        
+eureka:
+  client:
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${app.eureka-username}:${app.eureka-password}@localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${random.value}
+          
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+springdoc:
+  api-docs:
+   path: /v3/api-docs
+  swagger-ui:
+   path: /v3/swagger-ui.html  
+   
+auth:
+  svcKey: dep-1234-5678   
+  
+feign:
+  client:
+    config:
+      employee-service:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: full
+        defaultRequestHeaders:
+          X-SVC-KEY: emp-1234-5678
+
+schedule:
+  cron:
+    expression: 0 10 19 2 2 ?
+  fixedRate:
+    in:
+      milliseconds: 1000
+  fixedDelay:
+    in:
+      milliseconds: 1000 
+        
+environment: dev   
+
+app:
+  eureka-username: u
+  eureka-password: p
+ 

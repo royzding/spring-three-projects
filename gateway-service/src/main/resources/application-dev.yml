@@ -33,6 +33,17 @@ spring:
           args:
            groups: Admin, Roy2
            
+      - id: department-service
+        uri: lb://department-service
+        predicates:
+        - Path=/department/**
+        filters:
+        - RewritePath=/department/(?<path>.*), /$\{path}
+        - AddRequestHeader=X-SVC-KEY, dep-1234-5678
+        - name: AuthorizationPreFilter
+          args:
+           groups: Admin, Roy2
+           
       - id: openapi
         uri: http://localhost:${server.port}
         predicates:
@@ -58,6 +69,8 @@ springdoc:
     urls:
       - name: employee
         url: /v3/api-docs/employee
+      - name: department
+        url: /v3/api-docs/department
         
 auth:
   check-url: false
