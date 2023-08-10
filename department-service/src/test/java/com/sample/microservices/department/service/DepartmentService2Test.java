@@ -21,7 +21,7 @@ import com.sample.microservices.department.map.DepartmentMapper;
 import com.sample.microservices.department.model.dto.DepartmentDto;
 import com.sample.microservices.department.repository.DepartmentRepository;
 
-class DepartmentService2Test extends BaseServiceTest {
+class DepartmentService2Test extends BaseTest {
 	
 	@MockBean
 	private DepartmentMapper mapper;

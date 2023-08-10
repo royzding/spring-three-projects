@@ -17,9 +17,9 @@ import com.sample.microservices.department.data.model.HolidayDateEntity;
 import com.sample.microservices.department.map.HolidayDateMapper;
 import com.sample.microservices.department.model.dto.HolidayDateDto;
 import com.sample.microservices.department.repository.HolidayDateRepository;
-import com.sample.microservices.department.service.BaseServiceTest;
+import com.sample.microservices.department.service.BaseTest;
 
-public class HolidayDateValidatorTest extends BaseServiceTest {
+public class HolidayDateValidatorTest extends BaseTest {
 	
 	@MockBean
 	private HolidayDateMapper mapper;

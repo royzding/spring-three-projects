@@ -1,6 +1,6 @@
 package com.sample.microservices.department.data.model;
 
-import com.sample.microservices.common.model.dao.ParentEntity;
+import com.sample.microservices.common.model.ParentEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

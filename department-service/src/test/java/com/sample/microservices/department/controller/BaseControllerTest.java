@@ -19,9 +19,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.sample.microservices.common.auth.config.SecurityConfiguration;
 
-@ActiveProfiles({"unit", "api-security", "user-info"})
+@ActiveProfiles({"unit", "api-security"})
 @AutoConfigureMockMvc
-@ComponentScan({"com.sample.microservices.employee","com.sample.microservices.common"})
+@ComponentScan({"com.sample.microservices.employee","com.sample.microservices.common.*","com.sample.microservices.common.model.*"})
 @Import(SecurityConfiguration.class)
 class BaseControllerTest {
 	

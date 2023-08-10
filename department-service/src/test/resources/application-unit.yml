@@ -1,7 +1,5 @@
 server:
   port: 8084
-  servlet:
-    context-path: /department
 
 spring:
   application:
@@ -42,4 +40,18 @@ auth:
   svcKey: dep-1234-5678  
   
 environment: unit 
-   
+
+schedule:
+  cron:
+    expression: 0 10 19 2 2 ?
+  fixedRate:
+    in:
+      milliseconds: 1000
+  fixedDelay:
+    in:
+      milliseconds: 1000 
+      
+app:
+  jwt-secret: daf66e01593f61a15b857cf433aae03a005812b31234e149036bcc8dee755dbb
+
+app-jwt-expiration-milliseconds: 604800000         

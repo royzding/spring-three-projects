@@ -3,13 +3,15 @@ package com.sample.microservices.department.service;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
-@ActiveProfiles({"unit", "api-security", "user-info"})
+@ActiveProfiles({"unit", "api-security"})
 @SpringBootTest(webEnvironment=WebEnvironment.NONE)
-@AutoConfigureTestDatabase
+@ComponentScan({"com.sample.microservices.department","com.sample.microservices.common","com.sample.microservices.common.model"})
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
-public abstract class BaseServiceTest {
+public abstract class BaseTest {
 
 }
