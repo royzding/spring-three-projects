@@ -1,7 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -10,9 +9,11 @@
     </parent>
 
     <groupId>com.sample.microservices</groupId>
-    <artifactId>spring-three-pom-parent</artifactId>
+    <artifactId>microservices-pom-parent</artifactId>
     <version>3.0.0</version>
     <packaging>pom</packaging>
+    <name>microservices-pom-parent</name>
+    <description>microservices pom parent</description>
 
     <properties>
         <java.version>17</java.version>
@@ -21,6 +22,7 @@
 		<spring.security.version>6.1.2</spring.security.version>
 		<springdoc.version>2.1.0</springdoc.version>
     	<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
+    	<org.projectlombok.version>1.18.26</org.projectlombok.version>
     	<jackson.version>2.15.2</jackson.version>
     	<mongodb.version>4.1.2</mongodb.version>
     	<reactor.version>3.5.8</reactor.version>
@@ -34,15 +36,7 @@
         <sonar.organization>com.sample</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
-
-    <modules>
-        <module>discovery-service</module>
-        <module>gateway-service</module>
-        <module>common-ware</module>
-        <module>employee-service</module>
-        <module>department-service</module>
-    </modules>
-
+  
     <dependencyManagement>
         <dependencies>
 			
@@ -119,6 +113,14 @@
 			    <artifactId>mapstruct</artifactId>
 			    <version>${org.mapstruct.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${org.projectlombok.version}</version>
+				<optional>true</optional>
+				<scope>provided</scope>
+			</dependency>
 	        	            
 			<dependency>
 			    <groupId>com.fasterxml.jackson.core</groupId>
@@ -180,14 +182,23 @@
 
         </dependencies>
     </dependencyManagement>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            
+  
+	<build>
+	    <plugins>
+	        <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-dependency-plugin</artifactId>
+	            <configuration>
+	            	<skip>true</skip>
+	            </configuration>
+	        </plugin>
+	        <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-deploy-plugin</artifactId>
+	            <configuration>
+	            	<skip>true</skip>
+	            </configuration>
+	        </plugin>
 	        <plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
 	            <artifactId>maven-compiler-plugin</artifactId>
@@ -195,6 +206,11 @@
 	                <source>17</source> <!-- depending on your project -->
 	                <target>17</target> <!-- depending on your project -->
 	                <annotationProcessorPaths>
+	                    <path>
+	                        <groupId>org.projectlombok</groupId>
+	                        <artifactId>lombok</artifactId>
+	                        <version>${org.projectlombok.version}</version>
+	                    </path>
 	                    <path>
 	                        <groupId>org.mapstruct</groupId>
 	                        <artifactId>mapstruct-processor</artifactId>
@@ -204,8 +220,34 @@
 	                </annotationProcessorPaths>
 	            </configuration>
 	        </plugin>
-
-        </plugins>
-    </build>
-
+	        <plugin>
+	        	<groupId>org.sonarsource.scanner.maven</groupId>
+	        	<artifactId>sonar-maven-plugin</artifactId>
+	        </plugin>
+	        <plugin>
+			    <groupId>org.jacoco</groupId>
+			    <artifactId>jacoco-maven-plugin</artifactId>
+			    <version>0.8.8</version>
+	            <configuration>
+	            	<destfile>target/jacoco.exec</destfile>
+	            </configuration>
+			    <executions>
+			        <execution>
+			        	<id>prepare-agent</id>
+			            <goals>
+			                <goal>prepare-agent</goal>
+			            </goals>
+			        </execution>
+			        <execution>
+			            <id>report</id>
+			            <phase>test</phase>
+			            <goals>
+			                <goal>report</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+            </plugin>
+	    </plugins>
+	</build>   
+  
 </project>

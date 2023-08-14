@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.sample.microservices</groupId>
-        <artifactId>spring-three-pom-parent</artifactId>
+        <artifactId>microservices-pom-parent</artifactId>
         <version>3.0.0</version>
     </parent>
     
