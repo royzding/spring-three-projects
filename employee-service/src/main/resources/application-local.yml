@@ -42,6 +42,12 @@ springdoc:
    
 auth:
   svcKey: emp-1234-5678   
+
+app:
+  jwt-secret: my-secret
+
+app-jwt-expiration-milliseconds: 711100000
+
   
 environment: local  
    

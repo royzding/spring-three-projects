@@ -58,3 +58,8 @@ environment: dev
 app:
   eureka-username: u
   eureka-password: p
+  jwt-secret: my-secret
+
+app-jwt-expiration-milliseconds: 711100000
+  
+  

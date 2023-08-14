@@ -1,29 +1,5 @@
 server:
-  port: 8084
-
-spring:
-  cloud:
-    config:
-      enabled: false
-  application:
-    name: department-service
-    
-  datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver
-    url: jdbc:oracle:thin:@localhost:1521:orcl
-    username: c##ding
-    password: peardoor807x
-    
-    hikari:
-      connection-timeout: 250000
-      idle-timeout: 300000
-      max-lifetime: 1000000
-      maximum-pool-size: 24    
-
-jpa:
-  hibernate:
-    database-platform: org.hibernate.dialect.Oracle12cDialect
-    ddl-auto: none
+  port: 8083
     
 eureka:
   client:
@@ -31,11 +7,31 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka
   instance:
     hostname: localhost
     instance-id: ${spring.application.name}:${server.port}         
-          
+
+spring:
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: employee-service
+  main:
+    allow-bean-definition-overriding: true
+    
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: c##ding
+    password: peardoor807x
+
+jpa:
+  hibernate:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    ddl-auto: none
+    
 logging:
   pattern: 
     console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
@@ -45,16 +41,11 @@ springdoc:
    path: /v3/api-docs
   swagger-ui:
    path: /v3/swagger-ui.html  
-  open-api:
-    name: openApi Test
-    email: roy@example.com
-    license.name: my license 3.0
-    
    
 auth:
-  svcKey: dep-1234-5678  
+  svcKey: emp-1234-5678   
   
-environment: local 
+environment: unit 
 
 schedule:
   cron:
@@ -65,10 +56,8 @@ schedule:
   fixedDelay:
     in:
       milliseconds: 1000 
-
+      
 app:
-  jwt-secret: my-secret
+  jwt-secret: daf66e01593f61a15b857cf433aae03a005812b31234e149036bcc8dee755dbb
 
-app-jwt-expiration-milliseconds: 711100000
-  
-   
+app-jwt-expiration-milliseconds: 604800000         

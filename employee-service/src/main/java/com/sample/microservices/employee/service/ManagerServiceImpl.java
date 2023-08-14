@@ -127,6 +127,9 @@ public class ManagerServiceImpl implements ManagerService {
 		
 		entities = this.repository.saveAll(entities);
 
+		// saveAll will save the data to DB even there is an exception after.		
+		//		Integer xInteger = 10/0;
+
 		return this.mapper.entityToManager(entities);
 	}
 	
