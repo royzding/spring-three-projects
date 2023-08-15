@@ -16,7 +16,7 @@
     <description>microservices pom parent</description>
 
     <properties>
-        <java.version>8</java.version>
+        <java.version>17</java.version>
         <spring-cloud.version>2022.0.3</spring-cloud.version>
         <spring.boot.version>3.1.1</spring.boot.version>
 		<spring.security.version>6.1.2</spring.security.version>
@@ -27,8 +27,8 @@
     	<mongodb.version>4.1.2</mongodb.version>
     	<reactor.version>3.5.8</reactor.version>
     	<jupiter.version>5.7.0</jupiter.version>
-    	<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
-    	<maven-dependency-plugin.version>3.5.0</maven-dependency-plugin.version>
+    	<maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+    	<maven-dependency-plugin.version>3.6.0</maven-dependency-plugin.version>
     	<sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
     	<jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
     	<maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
@@ -212,10 +212,11 @@
 		            <artifactId>maven-compiler-plugin</artifactId>
 		            <version>${maven-compiler-plugin.version}</version>
 		            <configuration>
-		                <source>${java.version}</source> <!-- depending on your project -->
-		                <target>${java.version}</target> <!-- depending on your project -->
+		                <source>17</source> <!-- depending on your project -->
+		                <target>17</target> <!-- depending on your project -->
 				        <fork>true</fork>
 				        <compilerArgs>
+				            <arg>--enable-preview</arg>
 				            <arg>-Xlint:all</arg>
 				            <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
 				            <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>

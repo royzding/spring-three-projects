@@ -1,0 +1,54 @@
+server:
+  port: 8085
+    
+eureka:
+  client:
+    enabled: false
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}         
+
+spring:
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: organization-service
+    
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: c##ding
+    password: peardoor807x
+
+jpa:
+  hibernate:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    ddl-auto: none
+    
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+springdoc:
+  api-docs:
+   path: /v3/api-docs
+  swagger-ui:
+   path: /v3/swagger-ui.html  
+   
+auth:
+  svcKey: org-1234-5678   
+
+app:
+  jwt-secret: my-secret
+
+app-jwt-expiration-milliseconds: 711100000
+
+  
+environment: local  
+
+         

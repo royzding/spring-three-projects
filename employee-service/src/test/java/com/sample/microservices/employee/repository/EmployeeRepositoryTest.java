@@ -19,9 +19,10 @@ import com.sample.microservices.employee.model.dao.EmployeeEntity;
 
 @ActiveProfiles({"unit", "api-security"})
 @SpringBootTest(webEnvironment=WebEnvironment.NONE)
-@ComponentScan({"com.sample.microservices.department","com.sample.microservices.common.*","com.sample.microservices.common.model.*"})
+@ComponentScan({"com.sample.microservices.department","com.sample.microservices.common"})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Transactional@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Transactional
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class EmployeeRepositoryTest {
 
 	@Autowired

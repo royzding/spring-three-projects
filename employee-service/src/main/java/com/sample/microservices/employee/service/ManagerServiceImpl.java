@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import com.sample.microservices.common.model.Manager;
-import com.sample.microservices.common.model.User;
 import com.sample.microservices.common.pagination.PageLayout;
 import com.sample.microservices.employee.enums.ManagerSortType;
 import com.sample.microservices.employee.map.ManagerMapper;
@@ -30,23 +29,19 @@ public class ManagerServiceImpl implements ManagerService {
 	
 	private final ManagerMapper mapper;
 	private final ManagerEntityRepository repository;
-    private final User user;
     private final Environment environment;
     
 	
 	ManagerServiceImpl(ManagerMapper mapper, ManagerEntityRepository repository, 
-			User user, final Environment environment) {
+			final Environment environment) {
 		this.mapper = Mappers.getMapper(ManagerMapper.class);
 		this.repository = repository;
-    	this.user = user;
     	this.environment = environment;
 	}
 	
 	@Override
 	public Manager getManagerById(final Long id) {
-		
-		System.out.println("getAllManagers by " + this.user.getName());
-		
+				
 		String[] activeProfiles = this.environment.getActiveProfiles();
 		
 		for(String ap:activeProfiles) {
@@ -61,8 +56,6 @@ public class ManagerServiceImpl implements ManagerService {
 	public List<Manager> getAllManagers() {
 		
 		List<ManagerEntity> entities = this.repository.findAll();
-		
-		System.out.println("getAllManagers by " + this.user.getName());
 		
 		return this.mapper.entityToManager(entities);
 	}
