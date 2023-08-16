@@ -4,13 +4,12 @@ import java.util.List;
 
 import com.sample.microservices.common.model.Employee;
 import com.sample.microservices.common.model.Manager;
-import com.sample.microservices.organization.model.EmployeeEntity;
 
 public interface OrganizationService {
 
-	EmployeeEntity getEmployeeById(final Long id);
+	Employee getEmployeeById(final Long id);
     
-    List<EmployeeEntity> getAllEmployees();
+    List<Employee> getAllEmployees();
     
     Employee createEmployee(Employee employee);
     

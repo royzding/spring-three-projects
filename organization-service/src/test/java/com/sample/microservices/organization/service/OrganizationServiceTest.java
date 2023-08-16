@@ -11,6 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.sample.microservices.common.model.Employee;
 import com.sample.microservices.organization.map.EmployeeMapper;
 import com.sample.microservices.organization.map.ManagerMapper;
 import com.sample.microservices.organization.model.EmployeeEntity;
@@ -50,7 +51,7 @@ class OrganizationServiceTest extends BaseTest {
 		
 		Mockito.when(this.empRepository.findById(1L)).thenReturn(Optional.ofNullable(eEntity));
 		
-		EmployeeEntity employee = this.organizationService.getEmployeeById(1L);
+		Employee employee = this.organizationService.getEmployeeById(1L);
 		
 		assertEquals(1L, employee.getId());
 		

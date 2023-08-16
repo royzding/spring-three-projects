@@ -15,6 +15,8 @@ import com.sample.microservices.organization.model.ManagerEntity;
 import com.sample.microservices.organization.repository.EmployeeEntityRepository;
 import com.sample.microservices.organization.repository.ManagerEntityRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
 
@@ -33,20 +35,30 @@ public class OrganizationServiceImpl implements OrganizationService {
 	}
 
 	@Override
-	public EmployeeEntity getEmployeeById(Long id) {
-		return this.empRepository.findById(id).get();
+	public Employee getEmployeeById(Long id) {
+		return this.empMapper.entityToEmployee(this.empRepository.findById(id).get());
 	}
 
 	@Override
-	public List<EmployeeEntity> getAllEmployees() {
-		return this.empRepository.findAll();
+	public List<Employee> getAllEmployees() {
+		return this.empMapper.entityToEmployee(this.empRepository.findAll());
 	}
 	
 	@Override
+	//@Transactional
 	public Employee createEmployee(Employee employee) {
 		EmployeeEntity entity = this.empMapper.employeeToEntity(employee);
 		
 		this.empRepository.save(entity);
+		
+		Manager manager = new Manager();
+		manager.setId(null);
+		manager.setName("man-06-18");
+		manager.setSalary(1000.0);
+		
+		createManager(manager);
+		
+		int x = 1/0;
 		
 		return this.empMapper.entityToEmployee(entity);
 	}
