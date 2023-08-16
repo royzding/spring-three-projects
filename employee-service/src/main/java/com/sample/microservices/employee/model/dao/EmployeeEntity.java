@@ -1,5 +1,7 @@
 package com.sample.microservices.employee.model.dao;
 
+import com.sample.microservices.common.model.ParentEntity;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;

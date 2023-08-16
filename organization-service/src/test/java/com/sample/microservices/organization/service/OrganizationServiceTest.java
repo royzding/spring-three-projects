@@ -11,21 +11,33 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.sample.microservices.organization.map.EmployeeMapper;
+import com.sample.microservices.organization.map.ManagerMapper;
 import com.sample.microservices.organization.model.EmployeeEntity;
 import com.sample.microservices.organization.repository.EmployeeEntityRepository;
+import com.sample.microservices.organization.repository.ManagerEntityRepository;
 
-class EmployeeServiceTest extends BaseTest {
+class OrganizationServiceTest extends BaseTest {
 	
 	@MockBean
-	private EmployeeEntityRepository repository;
+	private EmployeeMapper empMapper;
 	
 	@MockBean
-	private EmployeeService employeeService;
+	private EmployeeEntityRepository empRepository;
+	
+	@MockBean
+	private ManagerMapper manMapper;
+	
+	@MockBean
+	private ManagerEntityRepository manRepository;
+	
+	@MockBean
+	private OrganizationService organizationService;
 	
 	@BeforeEach
 	void setUp() throws JsonMappingException, JsonProcessingException {
 		
-		employeeService = new EmployeeServiceImpl(repository);
+		organizationService = new OrganizationServiceImpl(empMapper, empRepository, manMapper, manRepository);
 		
 	}
 	
@@ -36,9 +48,9 @@ class EmployeeServiceTest extends BaseTest {
 		eEntity.setId(1L);
 		eEntity.setName("employee_name");
 		
-		Mockito.when(this.repository.findById(1L)).thenReturn(Optional.ofNullable(eEntity));
+		Mockito.when(this.empRepository.findById(1L)).thenReturn(Optional.ofNullable(eEntity));
 		
-		EmployeeEntity employee = this.employeeService.getEmployeeById(1L);
+		EmployeeEntity employee = this.organizationService.getEmployeeById(1L);
 		
 		assertEquals(1L, employee.getId());
 		

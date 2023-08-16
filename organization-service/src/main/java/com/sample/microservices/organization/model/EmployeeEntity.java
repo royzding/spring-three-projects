@@ -16,17 +16,7 @@ import lombok.Setter;
 public class EmployeeEntity  extends ParentEntity {
 	
 	private static final long serialVersionUID = 1L;
-/*	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(name="name")
-	private String name;
 
-	@Column(name="modified_by")
-	private String modifiedBy = "Base-Dummy";
-*/
 	@Column(name="salary")
 	private Double salary;
 

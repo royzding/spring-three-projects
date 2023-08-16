@@ -19,7 +19,7 @@ import com.sample.microservices.employee.model.dao.EmployeeEntity;
 
 @ActiveProfiles({"unit", "api-security"})
 @SpringBootTest(webEnvironment=WebEnvironment.NONE)
-@ComponentScan({"com.sample.microservices.department","com.sample.microservices.common"})
+@ComponentScan({"com.sample.microservices.department","com.sample.microservices.common.*"})
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)

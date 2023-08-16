@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sample.microservices.organization.model.EmployeeEntity;
-import com.sample.microservices.organization.service.EmployeeService;
+import com.sample.microservices.organization.service.OrganizationService;
 
 @RestController
 public class OrganizationController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(OrganizationController.class);
 	
-	private final EmployeeService employeeService;
+	private final OrganizationService organizationService;
 	
-	OrganizationController(EmployeeService employeeService) {
-		this.employeeService = employeeService;		
+	OrganizationController(OrganizationService organizationService) {
+		this.organizationService = organizationService;		
 	}
 
 	@GetMapping("/all")
 	public List<EmployeeEntity> getAllDepartments() {
-		return this.employeeService.getAllEmployees();
+		return this.organizationService.getAllEmployees();
 	}
 	
 	@GetMapping("/{id}")
 	public EmployeeEntity getEmployeeById(@PathVariable("id") Long id) {
-		return this.employeeService.getEmployeeById(id);
+		return this.organizationService.getEmployeeById(id);
 	}
 	
 	
