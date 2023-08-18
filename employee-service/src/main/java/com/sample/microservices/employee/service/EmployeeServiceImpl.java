@@ -1,6 +1,7 @@
 package com.sample.microservices.employee.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mapstruct.factory.Mappers;
 import org.springframework.cache.annotation.Cacheable;
@@ -52,7 +53,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<Employee> employees = this.mapper.entityToEmployee(entities);
 		
 		employees.forEach(e->{
-			e.setDepName(this.departmentService.getDepartmentMap().get(e.getDepId()).getName());
+			
+			Department departMap = this.departmentService.getDepartmentMap().get(e.getDepId());
+			
+			e.setDepName(departMap != null ? departMap.getName() : null);
+			
 		});
 				
 		return employees;

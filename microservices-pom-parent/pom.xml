@@ -18,8 +18,11 @@
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2022.0.3</spring-cloud.version>
+        <spring-cloud-dep.version>4.0.0</spring-cloud-dep.version>
         <spring.boot.version>3.1.1</spring.boot.version>
+        <spring-framework.version>6.0.11</spring-framework.version>
 		<spring.security.version>6.1.2</spring.security.version>
+		<spring-amqp.version>3.0.7</spring-amqp.version>
 		<springdoc.version>2.1.0</springdoc.version>
     	<org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     	<org.projectlombok.version>1.18.26</org.projectlombok.version>
@@ -49,9 +52,27 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<version>3.1.2</version>
+			<version>${spring.boot.version}</version>
 		</dependency>
 		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<version>${spring.boot.version}</version>
+		</dependency>
+		
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+	        <version>${spring.boot.version}</version>
+        </dependency>
+
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-test</artifactId>
@@ -62,129 +83,220 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
+	        <version>${spring.boot.version}</version>
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
 			
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            
-			<dependency>
-			    <groupId>org.springframework.security</groupId>
-			    <artifactId>spring-security-core</artifactId>
-			    <version>${spring.security.version}</version>
-			</dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>    
+                
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <version>${spring-cloud-dep.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-eureka-client</artifactId>
+            <version>${spring-cloud-dep.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
+            <version>${spring-cloud-dep.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+            <version>${spring-cloud-dep.version}</version>
+        </dependency>
+		<dependency>
+	        <groupId>org.springframework.cloud</groupId>
+	        <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>${spring-cloud-dep.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>${spring-cloud-dep.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-openfeign-core</artifactId>
+            <version>${spring-cloud-dep.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-gateway</artifactId>
+            <version>${spring-cloud-dep.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-gateway-server</artifactId>
+            <version>${spring-cloud-dep.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-loadbalancer</artifactId>
+            <version>${spring-cloud-dep.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-loadbalancer</artifactId>
+            <version>${spring-cloud-dep.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-context</artifactId>
+            <version>${spring-cloud-dep.version}</version>
+		</dependency>
 
-			<dependency>
-			    <groupId>org.springframework.security</groupId>
-			    <artifactId>spring-security-web</artifactId>
-			    <version>${spring.security.version}</version>
-			</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-test</artifactId>
+		    <version>${spring.security.version}</version>
+		</dependency>
 
-			<dependency>
-			    <groupId>org.springframework.security</groupId>
-			    <artifactId>spring-security-config</artifactId>
-			    <version>${spring.security.version}</version>
-			</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-aspects</artifactId>
+		    <version>${spring-framework.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context</artifactId>
+		    <version>${spring-framework.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-beans</artifactId>
+		    <version>${spring-framework.version}</version>
+		</dependency>
 
-			<dependency>
-			    <groupId>org.springdoc</groupId>
-			    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-	            <version>${springdoc.version}</version>
-			</dependency>
+		<dependency>
+		    <groupId>org.springframework.ampq</groupId>
+		    <artifactId>spring-ampq</artifactId>
+		    <version>${spring-amqp.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.ampq</groupId>
+		    <artifactId>spring-rabbit</artifactId>
+		    <version>${spring-amqp.version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-mongodb</artifactId>
+		    <version>${mongodb.version}</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.springdoc</groupId>
+		    <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc.version}</version>
+		</dependency>
 			
-	        <dependency>
-	            <groupId>org.springdoc</groupId>
-	            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
-	            <version>${springdoc.version}</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>org.springdoc</groupId>
-	            <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
-	            <version>${springdoc.version}</version>
-	        </dependency>
-	        <dependency>
-	            <groupId>org.springdoc</groupId>
-	            <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
-	            <version>${springdoc.version}</version>
-	        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
+            <version>${springdoc.version}</version>
+        </dependency>
 	
-			<dependency>
-			    <groupId>org.mapstruct</groupId>
-			    <artifactId>mapstruct</artifactId>
-			    <version>${org.mapstruct.version}</version>
-			</dependency>
+		<dependency>
+		    <groupId>org.mapstruct</groupId>
+		    <artifactId>mapstruct</artifactId>
+		    <version>${org.mapstruct.version}</version>
+		</dependency>
 			
-			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>${org.projectlombok.version}</version>
-				<optional>true</optional>
-				<scope>provided</scope>
-			</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${org.projectlombok.version}</version>
+			<optional>true</optional>
+			<scope>provided</scope>
+		</dependency>
 	        	            
-			<dependency>
-			    <groupId>com.fasterxml.jackson.core</groupId>
-			    <artifactId>jackson-core</artifactId>
-			    <version>${jackson.version}</version>
-			</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
 
-			<dependency>
-			    <groupId>com.fasterxml.jackson.core</groupId>
-			    <artifactId>jackson-databind</artifactId>
-			    <version>${jackson.version}</version>
-			</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-annotation</artifactId>
+		    <version>${jackson.version}</version>
+		</dependency>
 
-			<dependency>
-			    <groupId>com.fasterxml.jackson.core</groupId>
-			    <artifactId>jackson-annotation</artifactId>
-			    <version>${jackson.version}</version>
-			</dependency>
+		<dependency>
+		    <groupId>io.projectreactor</groupId>
+		    <artifactId>reactor-core</artifactId>
+		    <version>${reactor.version}</version>
+		</dependency>
 
-			<dependency>
-			    <groupId>org.springframework.data</groupId>
-			    <artifactId>spring-data-mongodb</artifactId>
-			    <version>${mongodb.version}</version>
-			</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+			<version>${mockito-core.version}</version>
+		</dependency>
 
-			<dependency>
-			    <groupId>io.projectreactor</groupId>
-			    <artifactId>reactor-core</artifactId>
-			    <version>${reactor.version}</version>
-			</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+			<version>${h2.version}</version>
+		</dependency>
 
-			<dependency>
-				<groupId>org.mockito</groupId>
-				<artifactId>mockito-core</artifactId>
-				<scope>test</scope>
-				<version>${mockito-core.version}</version>
-			</dependency>
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-api</artifactId>
+		    <version>${jupiter.version}</version>
+		    <scope>test</scope>
+		</dependency>
 
-			<dependency>
-				<groupId>com.h2database</groupId>
-				<artifactId>h2</artifactId>
-				<scope>test</scope>
-				<version>${h2.version}</version>
-			</dependency>
-
-			<dependency>
-			    <groupId>org.junit.jupiter</groupId>
-			    <artifactId>junit-jupiter-api</artifactId>
-			    <version>${jupiter.version}</version>
-			    <scope>test</scope>
-			</dependency>
-
-			<dependency>
-			    <groupId>org.junit.jupiter</groupId>
-			    <artifactId>junit-jupiter-engine</artifactId>
-			    <version>${jupiter.version}</version>
-			    <scope>test</scope>
-			</dependency>
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-engine</artifactId>
+		    <version>${jupiter.version}</version>
+		    <scope>test</scope>
+		</dependency>
 
         </dependencies>
     </dependencyManagement>
