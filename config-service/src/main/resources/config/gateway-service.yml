@@ -1,0 +1,92 @@
+server:
+  port: 8082
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  application:
+    name: gateway-service
+  cloud:
+    config:
+      enabled: true
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - OPTIONS
+      routes:
+      - id: employee-service
+        uri: lb://employee-service
+        predicates:
+        - Path=/employee/**
+        filters:
+        - RewritePath=/employee/(?<path>.*), /$\{path}
+        - AddRequestHeader=X-SVC-KEY, emp-1234-5678
+        - name: AuthorizationPreFilter
+          args:
+           groups: Admin, Roy2
+           
+      - id: department-service
+        uri: lb://department-service
+        predicates:
+        - Path=/department/**
+        filters:
+        - RewritePath=/department/(?<path>.*), /$\{path}
+        - AddRequestHeader=X-SVC-KEY, dep-1234-5678
+        - name: AuthorizationPreFilter
+          args:
+           groups: Admin, Roy2
+           
+      - id: openapi
+        uri: http://localhost:${server.port}
+        predicates:
+        - Path=/v3/api-docs/**
+        filters:
+        - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+        
+
+eureka:
+  client:
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}         
+
+springdoc:
+  swagger-ui:
+    path: /
+    urls:
+      - name: employee
+        url: /v3/api-docs/employee
+      - name: department
+        url: /v3/api-docs/department
+        
+auth:
+  check-url: false
+  check-auth: false
+  token:
+    header: authorization
+    header-url: URL
+    header-url-value: http://localhost
+    
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+      
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%X{traceId:-},%X{spanId:-}] ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+              
+      
