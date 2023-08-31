@@ -8,5 +8,5 @@ spring:
       server:
         bootstrap: true
         native:
-          search-locations: file:///C:/workspace-4.19.0/spring-three-projects/config-service/src/main/resources/config
+          search-locations: file:///C:/workspace-4.19.0/spring-three-projects/config-files
      
