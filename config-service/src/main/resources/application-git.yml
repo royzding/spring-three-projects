@@ -5,7 +5,9 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/royzding/config-files
+          uri: https://github.com/royzding/spring-three-projects
+          search-paths:
+          - config-service/src/main/resources/config
           username: royzding@gmail.com
           password: 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
           ignore-local-ssh-settings: true
