@@ -38,7 +38,7 @@ eureka:
           
 logging:
   pattern: 
-    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+    console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
 
 springdoc:
   api-docs:
