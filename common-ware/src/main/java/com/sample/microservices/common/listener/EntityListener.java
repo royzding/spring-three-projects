@@ -19,7 +19,7 @@ public class EntityListener {
 
     	String userName = "default-userName";
     	
-    	System.out.println("[Entity AUDIT] About to update/delete target: " 
+    	System.out.println("[Entity AUDIT - beforeAnyUpdate: ] About to update/delete target: " 
     	+ target.getClass().getSuperclass().getCanonicalName());
     	
     	Field field = target.getClass().getSuperclass().getDeclaredField("modifiedBy");
@@ -33,13 +33,13 @@ public class EntityListener {
     @PostUpdate
     @PostRemove
     private void afterAnyUpdate(Object target) {
-        System.out.println("[Entity AUDIT] add/update/delete complete target: \" \r\n"
+        System.out.println("[Entity AUDIT - afterAnyUpdate: ] add/update/delete complete target: \" \r\n"
         		+ target.getClass().getSuperclass().getCanonicalName());
     }
     
     @PostLoad
     private void afterLoad(Object target) {
-        System.out.println("[Entity AUDIT] Entity loaded from database: " 
+        System.out.println("[Entity AUDIT - afterLoad: ] Entity loaded from database: " 
         		+ target.getClass().getSuperclass().getCanonicalName());
     }
 
