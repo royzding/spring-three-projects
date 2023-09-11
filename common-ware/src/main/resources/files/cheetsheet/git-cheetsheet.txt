@@ -1,0 +1,4 @@
+
+#How to Remove Git from the Project?
+
+rm -rf .git*

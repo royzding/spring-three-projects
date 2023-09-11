@@ -40,7 +40,7 @@ taskkill /PID <PID> /F
 netstat -ano | findstr :9092
 
 debug:
-if kafka-server-start failed deleting the logs in the log folder.
+if kafka-server-start failed deleting the logs in the log folder. (rm -r *)
 
 
 ---------does not work on windows apps-----------------

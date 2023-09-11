@@ -1,0 +1,63 @@
+server:
+  port: 8085
+
+eureka:
+  client:
+    enabled: false
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}         
+
+spring:
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: kafka-producer-service
+    
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: c##ding
+    password: peardoor807x
+    
+  kafka:
+    bootstrap-servers: localhost:9092
+    topic01-name: topic-01
+    topic02-name: topic-02
+    topic03-name: topic-03
+    topic04-name: topic-04
+    producer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer    
+
+jpa:
+  hibernate:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    ddl-auto: none
+    
+logging:
+  pattern: 
+    console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
+
+springdoc:
+  api-docs:
+   path: /v3/api-docs
+  swagger-ui:
+   path: /v3/swagger-ui.html  
+ 
+auth:
+  svcKey: prod-1234-5678   
+
+app:
+  jwt-secret: my-secret
+
+app-jwt-expiration-milliseconds: 711100000
+
+  
+environment: local  
+   
