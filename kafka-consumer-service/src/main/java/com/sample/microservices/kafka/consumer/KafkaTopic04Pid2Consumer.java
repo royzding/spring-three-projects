@@ -33,7 +33,7 @@ public class KafkaTopic04Pid2Consumer
     
     @KafkaListener(
         topicPartitions = 
-        	{ @TopicPartition(topic = "${spring.kafka.topic04-name}", partitions = { "2" })},
+        	{ @TopicPartition(topic = "${spring.kafka.topic04-name}", partitions = { "0-5", "7-12", "16" })},
             groupId = "${spring.kafka.consumer.group04-id}",
             autoStartup = "true")
     public void T4G5P2_consumer(@Payload String message){
