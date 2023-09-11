@@ -52,6 +52,11 @@ eureka:
     
 auth:
   svcKey: kafka-producer-1234-5678 
+
+app:
+  jwt-secret: my-secret
+
+app-jwt-expiration-milliseconds: 711100000
      
 environment: dev  
 

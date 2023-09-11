@@ -13,7 +13,7 @@ import com.sample.microservices.kafka.service.KafKaProducerService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/kafka")
+@RequestMapping(value = "/producer")
 public class KafkaProducerController 
 {
     private final KafKaProducerService producerService;

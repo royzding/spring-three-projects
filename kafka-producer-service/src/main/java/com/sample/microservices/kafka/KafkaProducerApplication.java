@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @EnableFeignClients
 @OpenAPIDefinition(
 		servers = { 
-			@Server(url = "http://localhost:8082/kafka-producer-service"),
+			@Server(url = "http://localhost:8082/producer"),
 			@Server(url = "http://localhost:8085/") 
 		}, 
 		info = @Info(title = "kafka-producer-service", 

@@ -44,6 +44,28 @@ spring:
           args:
            groups: Admin, Roy2
            
+      - id: kafka-consumer-service
+        uri: lb://kafka-consumer-service
+        predicates:
+        - Path=/consumer/**
+        filters:
+        - RewritePath=/consumer/(?<path>.*), /$\{path}
+        - AddRequestHeader=X-SVC-KEY, kafka-consumer-1234-5678
+        - name: AuthorizationPreFilter
+          args:
+           groups: Admin, Roy2
+           
+      - id: kafka-producer-service
+        uri: lb://kafka-producer-service
+        predicates:
+        - Path=/producer/**
+        filters:
+        - RewritePath=/producer/(?<path>.*), /$\{path}
+        - AddRequestHeader=X-SVC-KEY, kafka-producer-1234-5678
+        - name: AuthorizationPreFilter
+          args:
+           groups: Admin, Roy2
+           
       - id: openapi
         uri: http://localhost:${server.port}
         predicates:
@@ -71,6 +93,10 @@ springdoc:
         url: /v3/api-docs/employee
       - name: department
         url: /v3/api-docs/department
+      - name: consumer
+        url: /v3/api-docs/consumer
+      - name: producer
+        url: /v3/api-docs/producer
         
 auth:
   check-url: false
