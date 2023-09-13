@@ -1,0 +1,79 @@
+server:
+ port: 8091
+ 
+eureka:
+ client:
+  enabled: false
+  registerWithEureka: false
+  fetchRegistry: false
+  serviceUrl:
+    defaultZone: http://localhost:8761/eureka
+ instance:
+  hostname: localhost
+  instance-id: ${spring.application.name}:${server.port}         
+
+spring:
+ rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+  
+  queue-producer-service:
+   direct-exchange-name: direct-exchange
+   queue-a-name: queue-A
+   queue-b-name: queue-B
+   routing-a-name: direct-A
+   routing-b-name: direct-B
+
+   topic-exchange-name: topic-exchange
+   queue-c-name: queue-C
+   queue-d-name: queue-D
+   routing-c-name: rabbitmq.#
+   routing-d-name: rabbitmq.spring.#
+
+   fanout-exchange-name: fanout-exchange
+   queue-e-name: queue-E
+   queue-f-name: queue-F
+   queue-g-name: queue-G
+
+ cloud:
+  config:
+   enabled: false
+ application:
+  name: kafka-producer-service
+    
+ datasource:
+  driver-class-name: oracle.jdbc.driver.OracleDriver
+  url: jdbc:oracle:thin:@localhost:1521:orcl
+  username: c##ding
+  password: peardoor807x
+   
+jpa:
+ hibernate:
+  database-platform: org.hibernate.dialect.Oracle12cDialect
+  ddl-auto: none
+    
+logging:
+ pattern: 
+  console: "%d{yyyy-MMM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) - %msg %n"
+
+springdoc:
+  api-docs:
+   path: /v3/api-docs
+  swagger-ui:
+   path: /v3/swagger-ui.html  
+  open-api:
+    name: openApi Test
+    email: roy@example.com
+    license.name: my license 3.0
+
+auth:
+  svcKey: rab-pro-1234-5678   
+  
+app:
+  jwt-secret: my-secret
+
+app-jwt-expiration-milliseconds: 711100000
+
+environment: local  

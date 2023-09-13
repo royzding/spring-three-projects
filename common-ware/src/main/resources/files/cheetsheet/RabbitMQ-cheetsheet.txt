@@ -1,8 +1,12 @@
 
 //start RabbitMQ Server
 // Go to RabbitMQ Server Location and use the command as follows
+//Create the RABBITMQ_BASE environment variable set its value to full path of rabbit mq server
+//(eg. C:\Applications\RabbitMQ Server)
 
-C:\Program Files\RabbitMQ Server\rabbitmq_server-3.9.13\sbin>rabbitmq-server start
+C:\Applications\RabbitMQ Server\rabbitmq_server-3.9.13\sbin>rabbitmq-server start
+
+//if rabbitmq-server could not be started login as admin and kill the rabbitmq service from task manager.
 
 //(installed) Next we will install the RabbitMQ plugin 
 //which will give use the RabbitMQ Management Console which is accessible using the browser. 
@@ -12,5 +16,7 @@ rabbitmq-plugins.bat enable rabbitmq_management
 
 
 //go to RabbitMQ Management Console
+http://localhost:15672/
+
  useername: guest
  password: guest
