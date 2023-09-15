@@ -1,0 +1,44 @@
+server:
+  port: 8087
+
+spring:
+  webflux:
+    base-path: webflux-postgresql
+  application:
+    name: webflux-postgresql-service
+
+  r2dbc:
+    url: r2dbc:postgresql://127.0.0.1:5432/myDB
+    username: postgres
+    password: abc123
+    
+eureka:
+  client:
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+          
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+auth:
+  svcKey: wf-postgresql-1234-5678  
+  
+environment: local 
+
+springdoc:
+  open-api:
+    name: webflux-ui
+    email: s@a.com
+    version: '2.1.0'
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /
+
+   

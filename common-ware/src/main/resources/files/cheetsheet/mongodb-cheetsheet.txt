@@ -9,5 +9,5 @@ mongo
 mongodb://127.0.0.1:27017/
 
 //swagger-ui
-http://localhost:8085/webfluxmongodb/
+http://localhost:8085/webfluxmongodb/v3/swagger-ui.html  
 

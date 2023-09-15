@@ -36,6 +36,7 @@
     	<jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
     	<maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
     	<asciidoctor-maven-plugin.version>2.2.4</asciidoctor-maven-plugin.version>
+    	<commonmark.version>0.21.0</commonmark.version>
 
     	<mockito-core.version>3.9.0</mockito-core.version>
     	<h2.version>2.2.220</h2.version>
@@ -55,6 +56,12 @@
 			<version>${spring.boot.version}</version>
 		</dependency>
 		
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+			<version>${spring.boot.version}</version>
+        </dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp</artifactId>
@@ -67,6 +74,12 @@
 			<version>${spring.boot.version}</version>
 		</dependency>
 		
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-r2dbc</artifactId> 
+			<version>${spring.boot.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -100,6 +113,17 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
             <version>${spring-cloud-dep.version}</version>
+            <exclusions>
+				<exclusion>
+					<artifactId>jettison</artifactId>
+					<groupId>org.codehaus.jettison</groupId>
+				</exclusion>
+			</exclusions>        
+        </dependency>
+        <dependency>
+            <groupId>jettison</groupId>
+            <artifactId>org.codehaus.jettison</artifactId>
+            <version>1.5.4</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -296,6 +320,12 @@
 		    <artifactId>junit-jupiter-engine</artifactId>
 		    <version>${jupiter.version}</version>
 		    <scope>test</scope>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.commonmark</groupId>
+		    <artifactId>commonmark</artifactId>
+		    <version>${commonmark.version}</version>
 		</dependency>
 
         </dependencies>

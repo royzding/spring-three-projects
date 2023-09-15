@@ -1,0 +1,5 @@
+{
+	"service": "upload-files-service",
+	"fileContent": "file-content",
+	"description": "test"
+}

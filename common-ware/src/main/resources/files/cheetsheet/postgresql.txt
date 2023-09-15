@@ -1,6 +1,7 @@
-1. go to the service to start the postgresql db service
-2. start the pgAdmin UI to login to the DB.
-3. DB: myDB; username: postgres; password: abc123; port: 5432
+1. login as admin to task manager
+2. go to the service to start the postgresql db service
+3. start the pgAdmin UI to login to the DB.
+4. DB: myDB; username: postgres; password: abc123; port: 5432
 
 spring:
 	r2dbc:
