@@ -1,0 +1,49 @@
+server:
+  port: 8089
+
+spring:
+  webflux:
+    base-path: webflux-oracle
+  application:
+    name: webflux-oracle-service
+  cloud:
+    config:
+      enabled: false
+  main:
+    web-application-type: reactive
+
+  r2dbc:
+    url: r2dbc:oracle://127.0.0.1:1521/orcl
+    username: c##ding
+    password: peardoor807x
+    
+eureka:
+  client:
+    enabled: false
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+          
+logging:
+  pattern: 
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /
+
+auth:
+  svcKey: wf-oracle-1234-5678  
+
+app:
+  jwt-secret: my-secret
+
+app-jwt-expiration-milliseconds: 711100000
+
+  
+environment: local     
