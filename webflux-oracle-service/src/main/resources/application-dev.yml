@@ -2,8 +2,6 @@ server:
   port: 8089
 
 spring:
-  webflux:
-    base-path: webflux-oracle
   application:
     name: webflux-oracle-service
   cloud:
@@ -35,7 +33,7 @@ springdoc:
   api-docs:
     path: /v3/api-docs
   swagger-ui:
-    path: /
+    path: /v3/swagger-ui.html
 
 auth:
   svcKey: wf-oracle-1234-5678  

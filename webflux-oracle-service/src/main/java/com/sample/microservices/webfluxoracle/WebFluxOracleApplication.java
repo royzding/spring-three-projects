@@ -15,7 +15,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @OpenAPIDefinition(
 		servers = { 
 			@Server(url = "http://localhost:8082/webflux-oracle"),
-			@Server(url = "http://localhost:8089/webflux-oracle") 
+			@Server(url = "http://localhost:8089/") 
 		}, 
 		info = @Info(title = "webflux-oracle", 
 		version = "${springdoc.open-api.version}", 

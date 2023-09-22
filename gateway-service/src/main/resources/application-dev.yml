@@ -66,6 +66,17 @@ spring:
           args:
            groups: Admin, Roy2
            
+      - id: webflux-oracle-service
+        uri: lb://webflux-oracle-service
+        predicates:
+        - Path=/webflux-oracle/**
+        filters:
+        - RewritePath=/webflux-oracle/(?<path>.*), /$\{path}
+        - AddRequestHeader=X-SVC-KEY, wf-oracle-1234-5678
+        - name: AuthorizationPreFilter
+          args:
+           groups: Admin, Roy2
+           
       - id: openapi
         uri: http://localhost:${server.port}
         predicates:
@@ -97,6 +108,8 @@ springdoc:
         url: /v3/api-docs/consumer
       - name: producer
         url: /v3/api-docs/producer
+      - name: webflux-oracle
+        url: /v3/api-docs/webflux-oracle
         
 auth:
   check-url: false
