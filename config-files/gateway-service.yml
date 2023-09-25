@@ -22,6 +22,13 @@ spring:
               - DELETE
               - OPTIONS
       routes:
+      - id: openapi
+        uri: http://localhost:${server.port}
+        predicates:
+        - Path=/v3/api-docs/**
+        filters:
+        - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+        
       - id: employee-service
         uri: lb://employee-service
         predicates:
@@ -44,13 +51,38 @@ spring:
           args:
            groups: Admin, Roy2
            
-      - id: openapi
-        uri: http://localhost:${server.port}
+      - id: kafka-consumer-service
+        uri: lb://kafka-consumer-service
         predicates:
-        - Path=/v3/api-docs/**
+        - Path=/consumer/**
         filters:
-        - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
-        
+        - RewritePath=/consumer/(?<path>.*), /$\{path}
+        - AddRequestHeader=X-SVC-KEY, kafka-consumer-1234-5678
+        - name: AuthorizationPreFilter
+          args:
+           groups: Admin, Roy2
+           
+      - id: kafka-producer-service
+        uri: lb://kafka-producer-service
+        predicates:
+        - Path=/producer/**
+        filters:
+        - RewritePath=/producer/(?<path>.*), /$\{path}
+        - AddRequestHeader=X-SVC-KEY, kafka-producer-1234-5678
+        - name: AuthorizationPreFilter
+          args:
+           groups: Admin, Roy2
+           
+      - id: webflux-oracle-service
+        uri: lb://webflux-oracle-service
+        predicates:
+        - Path=/webflux-oracle/**
+        filters:
+        - RewritePath=/webflux-oracle/(?<path>.*), /$\{path}
+        - AddRequestHeader=X-SVC-KEY, wf-oracle-1234-5678
+        - name: AuthorizationPreFilter
+          args:
+           groups: Admin, Roy2       
 
 eureka:
   client:
@@ -71,6 +103,12 @@ springdoc:
         url: /v3/api-docs/employee
       - name: department
         url: /v3/api-docs/department
+      - name: consumer
+        url: /v3/api-docs/consumer
+      - name: producer
+        url: /v3/api-docs/producer
+      - name: webflux-oracle
+        url: /v3/api-docs/webflux-oracle
         
 auth:
   check-url: false
