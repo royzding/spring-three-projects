@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: webflux-oracle-service
+  config:
+    import: optional:configserver:http://localhost:8888      
