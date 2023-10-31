@@ -4,6 +4,7 @@ import java.security.Key;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,7 @@ import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 @Component
+@Profile("jwt-auth")
 public class JwtTokenProvider {
 
     @Value("${app.jwt-secret}")

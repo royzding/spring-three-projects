@@ -2,11 +2,18 @@ server:
   port: 8082
 
 spring:
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
   output:
     ansi:
       enabled: always
   application:
     name: gateway-service
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   cloud:
     config:
       enabled: false

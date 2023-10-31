@@ -2,11 +2,18 @@ server:
   port: 8082
 
 spring:
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
   output:
     ansi:
       enabled: always
   application:
     name: gateway-service
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   cloud:
     config:
       enabled: false
@@ -61,11 +68,12 @@ springdoc:
         
 auth:
   check-url: false
-  check-auth: false
+  check-auth: true
   token:
     header: authorization
     header-url: URL
     header-url-value: http://localhost
+  svcKey: emp-1234-5678   
     
 management:
   tracing:
@@ -75,5 +83,11 @@ management:
 logging:
   pattern: 
     console: "%d{yyyy-MM-dd HH:mm:ss} [%X{traceId:-},%X{spanId:-}] ${LOG_LEVEL_PATTERN:-%5p} %m%n"
-              
+
+app:
+  jwt-secret: my-secret
+
+app-jwt-expiration-milliseconds: 711100000
+
+environment: local                
       

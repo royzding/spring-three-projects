@@ -1,0 +1,50 @@
+
+type Query {
+    employee(id: ID): Employee
+    employees: [Employee]
+    
+    bookById(id: ID): Book
+    
+    greeting: String
+    greetingMono : String
+    greetingsFlux : [String]    
+}
+
+type Mutation {
+    # restricted
+    updateSalary(input: UpdateSalaryInput!): UpdateSalaryPayload
+}
+
+type Employee {
+    id: ID!
+    name: String
+    # restricted
+    salary: String
+}
+
+input UpdateSalaryInput {
+    employeeId: ID!
+    newSalary: String!
+}
+
+type UpdateSalaryPayload {
+    success: Boolean!
+    employee: Employee
+}
+
+type Book {
+  id: ID
+  name: String
+  pageCount: Int
+  author: Author
+}
+
+type Author {
+  id: ID
+  firstName: String
+  lastName: String
+}
+
+type Subscription {
+    greetings: String
+}

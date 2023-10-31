@@ -1,0 +1,55 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /asyncaop-service
+
+spring:
+  cloud:
+    config:
+      enabled: false
+  application:
+    name: asyncaop-service
+    
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: c##ding
+    password: peardoor807x
+    
+  kafka:
+    topic-name: quickstart-events
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group-id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer    
+    
+jpa:
+  hibernate:
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    ddl-auto: none
+    
+springdoc:
+  api-docs:
+   path: /api-docs
+  swagger-ui:
+   path: /swagger-ui.html  
+   
+eureka:
+  client:
+    enabled: false
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${server.port}         
+          
+   
+   

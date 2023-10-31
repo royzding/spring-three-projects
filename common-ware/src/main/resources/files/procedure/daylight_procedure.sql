@@ -141,6 +141,9 @@ END;
 ---- call p_insert_two_param_plus_one('ALL');
 ---- call p_insert_two_param_minus_one('DSTU1');
 
+---- EXEC p_insert_two_param_minus_one('DSTU1');
+---- EXEC p_insert_two_param_plus_one('ALL');
+
 
 
 ---- anonymous PL/SQL block
