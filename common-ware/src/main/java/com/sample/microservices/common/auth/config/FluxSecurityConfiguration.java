@@ -1,4 +1,4 @@
-package com.sample.microservices.gateway.configuration;
+package com.sample.microservices.common.auth.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

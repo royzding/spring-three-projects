@@ -15,7 +15,7 @@ import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
 
-@SpringBootApplication //(scanBasePackages= {"com.sample.microservices.gateway.*","com.sample.microservices.common.*"})
+@SpringBootApplication (scanBasePackages= {"com.sample.microservices.gateway.*","com.sample.microservices.common.*"})
 @EnableDiscoveryClient
 public class GatewayApplication {
 
@@ -66,3 +66,5 @@ public class GatewayApplication {
 	}
 	
 }
+
+//-Dspring.profiles.active=local,flux-security,user-detail
