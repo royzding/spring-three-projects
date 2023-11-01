@@ -125,6 +125,7 @@ auth:
     header: authorization
     header-url: URL
     header-url-value: http://localhost
+  svcKey: api-gateway-1234-5678   
     
 management:
   tracing:

@@ -29,15 +29,11 @@ public class SecurityConfiguration { //extends WebSecurityConfigurerAdapter {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     	
-    	System.out.println("*****************SecurityFilterChain*******************");
+    	System.out.println("*****************@EnableWebSecurity:SecurityFilterChain*******************");
     	
-        http.csrf().disable()
-        .authorizeHttpRequests((authorize) ->
-                authorize.requestMatchers("/**").permitAll()
-                .anyRequest().permitAll()
-        );
-        
-        //http.addFilterBefore(new HeaderSecurityFilter(svcKey), BasicAuthenticationFilter.class);
+        http.addFilterBefore(new HeaderSecurityFilter(svcKey), BasicAuthenticationFilter.class)
+        .csrf().disable()
+        .authorizeHttpRequests().requestMatchers("/**").permitAll();
         
         return http.build();
 
