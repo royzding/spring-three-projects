@@ -34,3 +34,5 @@ public class EmployeeApplication {
 	}
 
 }
+
+//-Dspring.profiles.active=local,api-security,user-detail

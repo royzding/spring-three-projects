@@ -67,4 +67,4 @@ public class GatewayApplication {
 	
 }
 
-//-Dspring.profiles.active=local,flux-security,user-detail
+//-Dspring.profiles.active=local,user-detail

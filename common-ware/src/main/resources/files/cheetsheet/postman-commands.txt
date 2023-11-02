@@ -20,6 +20,8 @@ Headers:
 
 Authorization: Authorization
 
+X-GW-KEY: api-gateway-1234-5678
+
 UserDetail: {"username":"Roy-Ding","name":"Roy Ding","email":"rd@yahoo.com","roles":[{"id":1,"name":"role-01"},{"id":2,"name":"role-02"},{"id":3,"name":"role-03"}]}
 
 UserDetail: {"username":"Roy-Ding-02","name":"Roy Ding 02","email":"rd02@yahoo.com","roles":[{"id":1,"name":"role-01"},{"id":2,"name":"role-02"},{"id":3,"name":"role-03"}]}
