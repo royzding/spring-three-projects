@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
@@ -29,7 +30,10 @@ public class FluxSecurityConfiguration {
 	@Bean
 	SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) throws Exception {
 
-		return http.addFilterBefore(new WebFilter() {
+		return http
+
+/*				
+				.addFilterBefore(new WebFilter() {
 			
 			@Override
 			public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
@@ -40,18 +44,16 @@ public class FluxSecurityConfiguration {
 			   	
 			   	System.out.println("=====exchange.getRequest()========" + exchange.getRequest());
 			   	System.out.println("=====svcHeader========" + svcHeader);
-				
-/*    	 
+				    	 
 		        if(svcHeader == null || !svcHeader.equals(this.svcKey)) {
 		        	throw new BadCredentialsException("The Service Key was not found!");
 		        }
-*/
 				
 				return chain.filter(exchange);
 			}
 			
 		}, SecurityWebFiltersOrder.HTTP_HEADERS_WRITER)
-				
+*/				
 				  .authorizeExchange(exchanges -> exchanges
 				  .pathMatchers("/**").permitAll())
 				  .csrf(csrf -> csrf.disable())
