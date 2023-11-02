@@ -5,11 +5,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableReactiveMethodSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.SecurityWebFiltersOrder;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.util.matcher.NegatedServerWebExchangeMatcher;
+import org.springframework.security.web.server.util.matcher.PathPatternParserServerWebExchangeMatcher;
 
 import com.sample.microservices.gateway.filter.SecurityWebFilter;
 
@@ -28,9 +31,15 @@ public class FluxSecurityConfiguration {
 
 		return http				
 				  .addFilterBefore(new SecurityWebFilter(this.svcKey), SecurityWebFiltersOrder.HTTP_HEADERS_WRITER)				
-				  .authorizeExchange(exchanges -> exchanges
-				  .pathMatchers("/**").permitAll())
-				  .csrf(csrf -> csrf.disable())
+				  //.authorizeExchange(exchanges -> exchanges.pathMatchers("/**").permitAll())
+				  .securityMatcher(new PathPatternParserServerWebExchangeMatcher("/webjars/*/*.gz"))
+				  .authorizeExchange().anyExchange().denyAll()
+				  .and()
+				  .csrf()
+				  .requireCsrfProtectionMatcher(new NegatedServerWebExchangeMatcher(new PathPatternParserServerWebExchangeMatcher("/v3/**",HttpMethod.POST)))
+				  .disable().headers()
+				  .contentSecurityPolicy("script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self'; default-src 'self' frame-ancestors 'none';" )
+				  .and().and()
 				  .build();
 	}
 	
