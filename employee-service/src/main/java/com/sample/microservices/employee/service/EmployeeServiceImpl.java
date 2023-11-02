@@ -39,6 +39,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
+	public EmployeeEntity getEmployeeEntityById(final Long id) {
+		return this.repository.findById(id).get();
+	}
+
+	@Override
 	public List<Department> getAllDepartments() {
 		// TODO Auto-generated method stub
 		return this.departmentService.getAllDepartments();

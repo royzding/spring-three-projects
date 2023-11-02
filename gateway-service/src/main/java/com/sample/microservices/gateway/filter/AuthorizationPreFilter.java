@@ -52,39 +52,49 @@ public class AuthorizationPreFilter extends AbstractGatewayFilterFactory<Authori
             
             if(checkAuth) {
             	
-                if (!headers.containsKey(authTokenHeader)) {
-
-                	String cause = "Authorization header not found!";
-            		
-            		logger.error("{} {} {}", cause, " [URI]:", request.getURI());
-            		
-            		return AuthorizationFilterUtil.unauthorizedAccess(exchange,cause);	        		
-                }
-
-                String groups = config.getGroups();
-                
-                String authorizationHeader = headers.get(authTokenHeader).get(0);
-
-                if (!AuthorizationFilterUtil.isAuthorizedAccess(groups, authorizationHeader)) {
-
-                	String cause = "Authorization header not found!";
-            		
-            		logger.error("{} {} {}", cause, " [URI]:", request.getURI());
-            		
-            		return AuthorizationFilterUtil.unauthorizedAccess(exchange,cause);	        		
-                }
-                
 				try {
-
-                          	
-	                request.mutate().header("secret", "123").build();
+					
+	                if (!headers.containsKey(authTokenHeader)) {
+	
+	                	String cause = "Authorization header not found!";
+	            		
+	            		logger.error("{} {} {}", cause, " [URI]:", request.getURI());
+	            		
+	            		return AuthorizationFilterUtil.unauthorizedAccess(exchange,cause);	        		
+	                }
+	
+	                String groups = config.getGroups();
+	                
+	                String authorizationHeader = headers.get(authTokenHeader).get(0);
+	
+	                if (!AuthorizationFilterUtil.isAuthorizedAccess(groups, authorizationHeader)) {
+	
+	                	String cause = "Authorization header not found!";
+	            		
+	            		logger.error("{} {} {}", cause, " [URI]:", request.getURI());
+	            		
+	            		return AuthorizationFilterUtil.unauthorizedAccess(exchange,cause);	        		
+	                }
+                                       	
+	                //request.mutate().header("secret", "123").build();
+	                
+	                String userDetailHeader = headers.get("UserDetail").get(0);
 	                
 					Map<String, Object> itemsMap;
-					itemsMap = mapper.readValue(authorizationHeader, new TypeReference<Map<String, Object>>() {});
+					itemsMap = mapper.readValue(userDetailHeader, new TypeReference<Map<String, Object>>() {});
+					
+					String userName = (String)itemsMap.get("username");
+					String name = (String)itemsMap.get("name");
+					String email = (String)itemsMap.get("email");
+
+	                System.out.println("===============useName=========" + userName);
+	                System.out.println("===============name=========" + name);
+	                System.out.println("===============email=========" + email);
 
 	                UserDetailStore userDetailStore = new UserDetailStore();
-	                userDetailStore.setUsername((String)itemsMap.get("user_name"));
-	                userDetailStore.setEmail((String)itemsMap.get("email"));
+	                userDetailStore.setUsername(userName);
+	                userDetailStore.setName(name);
+	                userDetailStore.setEmail(email);
 	                
 	                String jsonUserDetailStore = mapper.writeValueAsString(userDetailStore);
 	

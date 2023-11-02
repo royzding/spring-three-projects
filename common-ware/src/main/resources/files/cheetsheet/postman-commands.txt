@@ -1,0 +1,26 @@
+
+
+GET:
+
+http://localhost:8082/employee/employee-controller/entity/85
+
+POST:
+
+http://localhost:8082/employee/employee-controller/
+
+{
+  "id": 0,
+  "name": "roy-12",
+  "salary": 1110,
+  "depId": 1,
+  "managerId": 22
+}
+
+Headers:
+
+Authorization: Authorization
+
+UserDetail: {"username":"Roy-Ding","name":"Roy Ding","email":"rd@yahoo.com","roles":[{"id":1,"name":"role-01"},{"id":2,"name":"role-02"},{"id":3,"name":"role-03"}]}
+
+UserDetail: {"username":"Roy-Ding-02","name":"Roy Ding 02","email":"rd02@yahoo.com","roles":[{"id":1,"name":"role-01"},{"id":2,"name":"role-02"},{"id":3,"name":"role-03"}]}
+

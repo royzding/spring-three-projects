@@ -5,11 +5,14 @@ import java.util.List;
 import com.sample.microservices.common.model.Department;
 import com.sample.microservices.common.model.Employee;
 import com.sample.microservices.common.model.EmployeeInfo;
+import com.sample.microservices.employee.model.dao.EmployeeEntity;
 import com.sample.microservices.employee.model.dto.EmployeeDto;
 
 public interface EmployeeService {
 
     Employee getEmployeeById(final Long id);
+    
+    EmployeeEntity getEmployeeEntityById(final Long id);
     
     List<Employee> getAllEmployees();
     

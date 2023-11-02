@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sample.microservices.common.model.Department;
 import com.sample.microservices.common.model.Employee;
 import com.sample.microservices.common.model.EmployeeInfo;
+import com.sample.microservices.employee.model.dao.EmployeeEntity;
 import com.sample.microservices.employee.model.dto.EmployeeDto;
 import com.sample.microservices.employee.model.dto.ValidEmployee;
 import com.sample.microservices.employee.service.EmployeeService;
@@ -58,6 +59,19 @@ public class EmployeeController {
 	@GetMapping("/{id}")
 	public Employee getEmployeeById(@PathVariable("id") Long id) {
 		return this.employeeService.getEmployeeById(id);
+	}
+	
+	@Operation(summary="get an employee by id")
+	@ApiResponses(value= {
+			@ApiResponse(responseCode="200",description="Success. Returns an Employee",
+					content= {@Content(mediaType="application/json", schema=@Schema(implementation=Employee.class)) }),
+			@ApiResponse(responseCode="404",description="Employee does not exist for the given id"), 
+			@ApiResponse(responseCode="500",description="Internal Server Error. The server could not process the request",
+			content= @Content) 
+	})
+	@GetMapping("/entity/{id}")
+	public EmployeeEntity getEmployeeEntityById(@PathVariable("id") Long id) {
+		return this.employeeService.getEmployeeEntityById(id);
 	}
 	
 	@Operation(summary="get all the employees")
