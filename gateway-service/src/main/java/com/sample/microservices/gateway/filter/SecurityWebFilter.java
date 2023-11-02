@@ -1,6 +1,5 @@
 package com.sample.microservices.gateway.filter;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
@@ -33,17 +32,6 @@ public class SecurityWebFilter implements WebFilter {
         if(svcHeader == null || !svcHeader.equals(this.svcKey)) {
         	throw new BadCredentialsException("The Service Key was not found!");
         }
-
-		HttpHeaders responseHeaders = exchange.getResponse().getHeaders();
-
-		responseHeaders.add("Access-Control-Allow-Origin", "*");
-		responseHeaders.add("Access-Control-Allow-Methods", "*");
-		responseHeaders.add("Access-Control-Request-Method", "*");
-		responseHeaders.add("Access-Control-Allow-Headers", "*");
-		responseHeaders.add("Access-Control-Request-Headers", "*");
-		responseHeaders.add("Access-Control-Allow-Credentials", "true");
-		responseHeaders.add("Access-Control-Max-Age", "2400");
-		
 
 		return chain.filter(exchange);
 	}
