@@ -1,4 +1,4 @@
-package com.sample.microservices.common.auth.config;
+package com.sample.microservices.gateway.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
 @Configuration
-@Profile("flux-security")
+//@Profile("flux-security")
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
 public class FluxSecurityConfiguration {

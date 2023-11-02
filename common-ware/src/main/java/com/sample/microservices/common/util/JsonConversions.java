@@ -1,16 +1,18 @@
 package com.sample.microservices.common.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sample.microservices.common.model.Address;
 import com.sample.microservices.common.model.Person;
+import com.sample.microservices.common.model.Role;
+import com.sample.microservices.common.model.UserDetailStore;
 
 public class JsonConversions {
 	
@@ -18,6 +20,7 @@ public class JsonConversions {
 	
 	public static void main(String[] args) {
 
+/*
 		Person person1 = new Person();
 		person1.setId(1L);
 		person1.setFirstName("first name");
@@ -68,7 +71,24 @@ public class JsonConversions {
 		
 		convertPersonList(personList);
 		
-
+*/
+		UserDetailStore userDetailStore = new UserDetailStore();
+		userDetailStore.setUsername("Roy-Ding");
+		userDetailStore.setName("Roy Ding");
+		userDetailStore.setEmail("rd@yahoo.com");
+		
+		Set<Role> roleSet = new HashSet<>();
+		roleSet.add(new Role(1L, "role-01"));
+		roleSet.add(new Role(2L, "role-02"));
+		roleSet.add(new Role(3L, "role-03"));
+		
+		userDetailStore.setRoles(roleSet);
+		
+		System.out.println(objectToJsonStr(userDetailStore));
+		
+		//{"username":"Roy-Ding","name":"Roy Ding","email":"rd@yahoo.com","roles":[{"id":1,"name":"role-01"},{"id":2,"name":"role-02"},{"id":3,"name":"role-03"}]}
+		
+		
 
 	}
 
