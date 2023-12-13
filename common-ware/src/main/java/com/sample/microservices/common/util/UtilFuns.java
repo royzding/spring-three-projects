@@ -3,12 +3,16 @@ package com.sample.microservices.common.util;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -22,6 +26,8 @@ public class UtilFuns {
 	public static void main(String[] args) {
 		
 		System.out.println(hasPredicate(Arrays.asList("Plus","Minus")).test("plusx"));
+		
+		isDSTActive();
 	}
 	
 	private UtilFuns() {
@@ -30,6 +36,30 @@ public class UtilFuns {
 	
 	public static Predicate<String> hasPredicate(Collection<String> c) {
 		return op->c.stream().anyMatch(op::equalsIgnoreCase);
+		
+	}
+	
+	public static void isDSTActive() {
+		
+		try {
+			
+			Date date = new SimpleDateFormat("dd/MM/yyyy").parse("12/03/2023");
+			
+			boolean isDSTActive = TimeZone.getDefault().inDaylightTime(date);
+		
+			System.out.println("DST is " + isDSTActive);
+			
+			System.out.println(TimeZone.getTimeZone( "US/Arizona").inDaylightTime( date ));
+			System.out.println(TimeZone.getTimeZone( "America/New_York").inDaylightTime( date ));
+			System.out.println(TimeZone.getTimeZone( "US/Alaska").inDaylightTime( date ));
+			System.out.println(TimeZone.getTimeZone( "America/Los_Angeles").inDaylightTime( date ));
+			System.out.println(TimeZone.getTimeZone( "PST").inDaylightTime( date ));
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 	

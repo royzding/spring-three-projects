@@ -36,6 +36,8 @@ spring:
         filters:
         - RewritePath=/employee/(?<path>.*), /$\{path}
         - AddRequestHeader=X-SVC-KEY, emp-1234-5678
+        - AddRequestHeader=X-SVC-AUTH, authorization
+        - AddRequestHeader=UserDetail, {"username":"emp user","name":"Roy Ding 01","email":"rd@yahoo.com","roles":[{"id":1,"name":"role-01"},{"id":2,"name":"role-02"},{"id":3,"name":"role-03"}]}
         - name: AuthorizationPreFilter
           args:
            groups: Admin, Roy2
@@ -47,6 +49,8 @@ spring:
         filters:
         - RewritePath=/department/(?<path>.*), /$\{path}
         - AddRequestHeader=X-SVC-KEY, dep-1234-5678
+        - AddRequestHeader=X-SVC-AUTH, authorization
+        - AddRequestHeader=UserDetail, {"username":"depart-user","name":"Roy Ding 02","email":"rd@yahoo.com","roles":[{"id":1,"name":"role-01"},{"id":2,"name":"role-02"},{"id":3,"name":"role-03"}]}
         - name: AuthorizationPreFilter
           args:
            groups: Admin, Roy2
@@ -122,7 +126,7 @@ auth:
   check-url: false
   check-auth: true
   token:
-    header: Authorization
+    header: X-SVC-AUTH
     header-url: URL
     header-url-value: http://localhost
   svcKey: api-gateway-1234-5678   

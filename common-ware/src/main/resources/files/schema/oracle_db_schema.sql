@@ -1,4 +1,5 @@
 
+--- create unique constraint with a condition.
 
 --- DROP TABLE holiday_date;
 

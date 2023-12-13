@@ -91,11 +91,9 @@
             <artifactId>spring-cloud-gateway-server</artifactId>
         </dependency>
         
-        <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
 		<dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>servlet-api</artifactId>
-		    <version>2.5</version>
+		    <groupId>jakarta.servlet</groupId>
+		    <artifactId>jakarta.servlet-api</artifactId>
 		    <scope>provided</scope>
 		</dependency>
 

@@ -6,7 +6,6 @@
         <groupId>com.sample.microservices</groupId>
         <artifactId>microservices-pom-parent</artifactId>
         <version>3.0.0</version>
-        <relativePath>./microservices-pom-parent</relativePath>
     </parent>
 	
 	<properties>
