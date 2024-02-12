@@ -1,5 +1,7 @@
 server:
   port: 8082
+  servlet:
+   context-path: /
 
 spring:
   main:
@@ -40,19 +42,41 @@ spring:
           args:
            groups: Admin, Roy2
            
-      - id: openapi
-        uri: http://localhost:${server.port}
+      - id: department-service
+        uri: lb://department-service
         predicates:
-        - Path=/v3/api-docs/**
+        - Path=/department/**
         filters:
+        - RewritePath=/department/(?<path>.*), /$\{path}
+        - AddRequestHeader=X-SVC-KEY, dep-1234-5678
+        - AddRequestHeader=X-SVC-AUTH, authorization
+        - AddRequestHeader=UserDetail, {"username":"depart-user","name":"Roy Ding 02","email":"rd@yahoo.com","roles":[{"id":1,"name":"role-01"},{"id":2,"name":"role-02"},{"id":3,"name":"role-03"}]}
+        - name: AuthorizationPreFilter
+          args:
+           groups: Admin, Roy2
+
+      - id: employee-service-swagger
+        uri: lb://employee-service
+        predicates:
+        - Path=/v3/api-docs/emp/**
+        filters:
+        - AddRequestHeader=X-SVC-KEY, emp-1234-5678
+        - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
+        
+      - id: department-service-swagger
+        uri: lb://department-service
+        predicates:
+        - Path=/v3/api-docs/dept/**
+        filters:
+        - AddRequestHeader=X-SVC-KEY, dep-1234-5678
         - RewritePath=/v3/api-docs/(?<path>.*), /$\{path}/v3/api-docs
         
 
 eureka:
   client:
-    enabled: false
-    registerWithEureka: false
-    fetchRegistry: false
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
   instance:
@@ -62,9 +86,6 @@ eureka:
 springdoc:
   swagger-ui:
     path: /
-    urls:
-      - name: employee
-        url: /v3/api-docs/employee
         
 auth:
   check-url: false

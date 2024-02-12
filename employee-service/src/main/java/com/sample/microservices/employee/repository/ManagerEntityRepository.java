@@ -1,6 +1,7 @@
 package com.sample.microservices.employee.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -71,8 +72,16 @@ public interface ManagerEntityRepository extends JpaRepository<ManagerEntity, Lo
     @Query(nativeQuery = true, value = "DELETE from manager m WHERE m.name like %:name% ")
     void deleteManagersByNameLike(@Param("name") String name);
     
+    @Modifying
+    @Query(nativeQuery = true, value = "UPDATE manager m SET m.salary = :salary WHERE m.name = :name ")
+    void updateManagerSalaryByName(@Param("salary") Double salary, @Param("name") String name);
+    
+    //using interface to convert native query
     @Query(nativeQuery = true, value = "SELECT id, name, salary, modified_by as modifiedBy from manager m WHERE m.name like %:name% ")
     List<IManagerMini> getManagerMiniByNameLikeNative(@Param("name") String name);
+    
+    @Query(nativeQuery = true, value = "SELECT MAX(salary) from manager ")
+    Optional<Double> getMaxSalary();
     
     
 }

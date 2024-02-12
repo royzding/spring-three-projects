@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,7 @@ import org.springframework.util.StopWatch;
 import com.sample.microservices.common.model.Department;
 import com.sample.microservices.common.model.Employee;
 import com.sample.microservices.common.model.EmployeeInfo;
+import com.sample.microservices.common.model.UserDetailStore;
 import com.sample.microservices.employee.department.DepartmentService;
 import com.sample.microservices.employee.map.EmployeeMapper;
 import com.sample.microservices.employee.model.dao.EmployeeEntity;
@@ -24,12 +26,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private final EmployeeMapper mapper;
 	private final EmployeeEntityRepository repository;
 	private final DepartmentService departmentService;
+	private final UserDetailStore userDetailStore;
+
 	
-	EmployeeServiceImpl(EmployeeMapper mapper, EmployeeEntityRepository repository, DepartmentService departmentService) {
+	EmployeeServiceImpl(EmployeeMapper mapper, EmployeeEntityRepository repository, 
+			DepartmentService departmentService, UserDetailStore userDetailStore) {
 		this.mapper = Mappers.getMapper(EmployeeMapper.class);
 		this.repository = repository;
 		this.departmentService = departmentService;
-	}
+		this.userDetailStore = userDetailStore;
+		}
 	
 	@Override
 	public Employee getEmployeeById(final Long id) {

@@ -30,7 +30,7 @@ public class SecurityWebFilter implements WebFilter {
 	   	System.out.println("=====svcHeader========" + svcHeader);
 		    	 
         if(svcHeader == null || !svcHeader.equals(this.svcKey)) {
-        	throw new BadCredentialsException("The Service Key was not found!");
+        	throw new BadCredentialsException("The Service Key was not found from gateway service!");
         }
 
 		return chain.filter(exchange);
