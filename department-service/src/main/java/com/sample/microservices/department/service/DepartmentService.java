@@ -27,4 +27,10 @@ public interface DepartmentService {
     Long getCacheableTime();
     
     List<Employee> getEmployeesByDepartmentId(final Long id);    
+    
+    List<Department> getAllDepartmentWZs();
+    
+    Department createDepartmentWZ(final Department department);
+    
+    
 }

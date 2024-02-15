@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -20,6 +21,7 @@ import com.sample.microservices.department.employee.EmployeeService;
 import com.sample.microservices.department.map.DepartmentMapper;
 import com.sample.microservices.department.model.dto.DepartmentDto;
 import com.sample.microservices.department.repository.DepartmentRepository;
+import com.sample.microservices.department.repository.DepartmentWZRepository;
 
 class DepartmentServiceTest extends BaseTest {
 	
@@ -27,6 +29,9 @@ class DepartmentServiceTest extends BaseTest {
 	
 	@Mock
 	private DepartmentRepository repository;
+	@Mock
+	private DepartmentWZRepository wzRepository;
+	
 	
 	private EmployeeService employeeService;
 	
@@ -47,7 +52,7 @@ class DepartmentServiceTest extends BaseTest {
 		
 		mapper = Mappers.getMapper(DepartmentMapper.class);
 		
-		departmentService = new DepartmentServiceImpl(mapper, repository, employeeService);
+		departmentService = new DepartmentServiceImpl(mapper, repository, employeeService, wzRepository);
 		
 		entity = objMapper.readValue(department, DepartmentEntity.class);
 		

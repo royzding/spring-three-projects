@@ -14,10 +14,12 @@ spring:
     username: c##ding
     password: peardoor807x
 
-jpa:
-  hibernate:
-    database-platform: org.hibernate.dialect.Oracle12cDialect
-    ddl-auto: none
+  jpa:
+    hibernate:
+      database-platform: org.hibernate.dialect.Oracle12cDialect
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl    #to make generated sql query UPPER case.
     
 eureka:
   client:

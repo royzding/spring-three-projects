@@ -33,7 +33,7 @@ public class HeaderSecurityFilter extends OncePerRequestFilter {
     	System.out.println("=====svcHeader========" + svcHeader);
     	 
         if(svcHeader == null || !svcHeader.equals(this.svcKey)) {
-        	throw new BadCredentialsException("The Service Key was not found from common-auth filter!");
+        	//throw new BadCredentialsException("The Service Key was not found from common-auth filter!");
         }
 
         filterChain.doFilter(request, response);

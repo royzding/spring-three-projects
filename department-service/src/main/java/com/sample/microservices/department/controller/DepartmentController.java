@@ -159,6 +159,32 @@ public class DepartmentController {
 		return this.departmentService.getEmployeesByDepartmentId(depId);
 	}
 
+	@Operation(summary="get all the departments")
+	@ApiResponses(value= {
+		@ApiResponse(responseCode="200",description="Success. An empty list is returned when no records are found",
+					content= {@Content(mediaType="application/json", array=@ArraySchema(schema=@Schema(implementation=Department.class))) }),
+		@ApiResponse(responseCode="500",description="Internal Server Error. The server could not process the request",content= @Content) 
+	})
+	@GetMapping("/wz/all")
+	public List<Department> getAllDepartmentWZs() {
+		return this.departmentService.getAllDepartmentWZs();
+	}
+
+	@Operation(summary="Create an department")
+	@ApiResponses(value= {
+			@ApiResponse(responseCode="201",description="Department created",
+					content= {@Content(mediaType="application/json", schema=@Schema(implementation=Department.class)) }),
+			@ApiResponse(responseCode="400",description="Bad request"), 
+			@ApiResponse(responseCode="409",description="Department with the same name already exists"), 
+			@ApiResponse(responseCode="500",description="Internal Server Error. The server could not process the request",
+			content= @Content) 
+	})
+	@PostMapping("/wz")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Department createDepartmentWZ(@Valid @RequestBody Department department) {
+
+		return this.departmentService.createDepartmentWZ(department);
+	}
 	
 /*	
 	@Operation(summary="get a list of department of the department")

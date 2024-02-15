@@ -17,3 +17,14 @@ grant create table,  create view, create procedure, create sequence to C##WANZUN
 ALTER USER C##WANZUN quota unlimited on USERS;
 
 GRANT CREATE TRIGGER TO  C##WANZUN;
+
+DROP user C##WANZUN CASCADE;
+
+create user c##wanzun:
+
+create user c##wanzun IDENTIFIED BY peardoor807x;
+GRANT CREATE SESSION TO c##wanzun WITH ADMIN OPTION;
+grant create table,  create view, create procedure, create sequence to c##wanzun;
+ALTER USER c##wanzun quota unlimited on USERS;
+GRANT CREATE TRIGGER TO  c##wanzun;
+

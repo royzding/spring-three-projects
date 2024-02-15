@@ -24,7 +24,11 @@ public class EntityListener {
     @PreRemove
     private void beforeAnyUpdate(Object target) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 
-    	String userName = userDetailStore.getUsername();
+    	String userName = "default user"; 
+    	
+    	if(this.userDetailStore != null) {
+    		userName = userDetailStore.getUsername();
+    	}    	
     	
     	System.out.println("[Entity AUDIT - beforeAnyUpdate: ] About to update/delete target: " 
     	+ target.getClass().getSuperclass().getCanonicalName());

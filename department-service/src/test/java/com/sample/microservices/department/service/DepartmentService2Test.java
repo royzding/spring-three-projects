@@ -20,6 +20,7 @@ import com.sample.microservices.department.employee.EmployeeService;
 import com.sample.microservices.department.map.DepartmentMapper;
 import com.sample.microservices.department.model.dto.DepartmentDto;
 import com.sample.microservices.department.repository.DepartmentRepository;
+import com.sample.microservices.department.repository.DepartmentWZRepository;
 
 class DepartmentService2Test extends BaseTest {
 	
@@ -28,6 +29,9 @@ class DepartmentService2Test extends BaseTest {
 	
 	@MockBean
 	private DepartmentRepository repository;
+	
+	@MockBean
+	private DepartmentWZRepository wzRepository;
 	
 	@MockBean
 	private EmployeeService employeeService;
@@ -51,7 +55,7 @@ class DepartmentService2Test extends BaseTest {
 		
 		mapper = Mockito.mock(DepartmentMapper.class);
 		
-		departmentService = new DepartmentServiceImpl(mapper, repository, employeeService);
+		departmentService = new DepartmentServiceImpl(mapper, repository, employeeService, wzRepository);
 		
 		entity = objMapper.readValue(department, DepartmentEntity.class);
 		

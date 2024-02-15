@@ -16,10 +16,12 @@ import com.sample.microservices.common.annotation.LoggableType;
 import com.sample.microservices.common.model.Department;
 import com.sample.microservices.common.model.Employee;
 import com.sample.microservices.department.data.model.DepartmentEntity;
+import com.sample.microservices.department.data.model.DepartmentWZEntity;
 import com.sample.microservices.department.employee.EmployeeService;
 import com.sample.microservices.department.map.DepartmentMapper;
 import com.sample.microservices.department.model.dto.DepartmentDto;
 import com.sample.microservices.department.repository.DepartmentRepository;
+import com.sample.microservices.department.repository.DepartmentWZRepository;
 
 @Service
 @LoggableType
@@ -27,12 +29,15 @@ public class DepartmentServiceImpl implements DepartmentService {
 	
 	private final DepartmentMapper mapper;
 	private final DepartmentRepository repository;
+	private final DepartmentWZRepository wzRepository;
 	private final EmployeeService employeeService;
 		
-	public DepartmentServiceImpl(DepartmentMapper mapper, DepartmentRepository repository, EmployeeService employeeService) {
+	public DepartmentServiceImpl(DepartmentMapper mapper, DepartmentRepository repository, 
+			EmployeeService employeeService, DepartmentWZRepository wzRepository) {
 		this.mapper = Mappers.getMapper(DepartmentMapper.class);
 		this.repository = repository;
 		this.employeeService = employeeService;
+		this.wzRepository = wzRepository;
 	}
 	
 	@Override
@@ -132,5 +137,32 @@ public class DepartmentServiceImpl implements DepartmentService {
 	public List<Employee> getEmployeesByDepartmentId(Long id) {
 		return this.employeeService.getEmployeesByDepartmentId(id);
 	}
+	
+	
+	@Override
+	@Cacheable("all-departments")
+	@Loggable()
+	@LoggableEvents(type=EventType.READ)
+	public List<Department> getAllDepartmentWZs() {
+		
+		List<DepartmentWZEntity> entities = this.wzRepository.findAll();
+		
+		
+		return this.mapper.entityWZToDepartment(entities);
+	}
+
+	@Override
+	@Loggable(level=Level.WARN)
+	@LoggableEvents(type=EventType.CREATE)
+	@Transactional
+	public Department createDepartmentWZ(Department department) {
+		DepartmentWZEntity entity = this.mapper.departmentToEntity(department);
+		entity.setId(null);
+		
+		this.wzRepository.save(entity);
+		
+		return this.mapper.entityWZToDepartment(entity);
+	}
+
 	
 }

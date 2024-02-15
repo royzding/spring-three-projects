@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 @OpenAPIDefinition(
 		servers = { 
 			@Server(url = "http://localhost:8082/employee"),
-			@Server(url = "http://localhost:8083/") 
+			@Server(url = "http://localhost:8083/emp") 
 		}, 
 		info = @Info(title = "employee-service", 
 		version = "v3", 
@@ -35,4 +35,5 @@ public class EmployeeApplication {
 
 }
 
+//dev and local
 //-Dspring.profiles.active=local,api-security,user-detail
