@@ -1,6 +1,8 @@
 package com.sample.microservices.uploadfiles.service;
 
 import java.nio.file.Path;
+import java.nio.file.attribute.PosixFilePermission;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import org.springframework.core.io.Resource;
@@ -15,4 +17,7 @@ public interface UploadFilesService {
   public void deleteAll();
 
   public Stream<Path> loadAll();
+  
+  Set<PosixFilePermission> getFilePermissions();
+  
 }

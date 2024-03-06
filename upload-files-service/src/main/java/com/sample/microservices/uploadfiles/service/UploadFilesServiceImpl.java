@@ -14,6 +14,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import org.apache.commons.lang.SystemUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -21,6 +22,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.sample.microservices.uploadfiles.config.props.FilePermissionProperties;
 
 @Service
 public class UploadFilesServiceImpl implements UploadFilesService {
@@ -36,6 +39,9 @@ public class UploadFilesServiceImpl implements UploadFilesService {
 
   @Value("${uploadfiles.othersPermission}")
   private String othersPermission;
+  
+  @Autowired
+  private FilePermissionProperties filePermissionProperties;
 
   @Override
   public void save(String fileType, MultipartFile file) {
@@ -167,6 +173,11 @@ public class UploadFilesServiceImpl implements UploadFilesService {
 	  	  
 	  return fileName + "_" + timeStamp + fileExt;
 	  
+  }
+
+  @Override
+  public Set<PosixFilePermission> getFilePermissions() {
+	  return this.filePermissionProperties.getAll();
   }
 
 }

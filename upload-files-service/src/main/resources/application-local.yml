@@ -53,6 +53,20 @@ uploadfiles:
   ownerPermission: READ:WRITE:EXECUTE
   groupPermission: READ:WRITE:EXECUTE
   othersPermission: READ:WRITE:EXECUTE
+  
+filepermissions:
+  owner:
+    - OWNER_READ
+    - OWNER_WRITE
+    - OWNER_EXECUTE
+  group:
+    - GROUP_READ
+    - GROUP_WRITE
+    - GROUP_EXECUTE
+  others:
+    - OTHERS_READ
+    - OTHERS_WRITE
+    - OTHERS_EXECUTE    
    
 auth:
   svcKey: upload-1234-5678   

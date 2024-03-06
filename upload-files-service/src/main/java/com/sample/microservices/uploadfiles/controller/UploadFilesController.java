@@ -1,10 +1,12 @@
 package com.sample.microservices.uploadfiles.controller;
 
 import java.io.IOException;
+import java.nio.file.attribute.PosixFilePermission;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +87,13 @@ public class UploadFilesController {
     }).collect(Collectors.toList());
 
     return ResponseEntity.status(HttpStatus.OK).body(fileInfos);
+  }
+
+  @GetMapping("/file-permissions")
+  public Set<PosixFilePermission> getFilePermissions() {
+	  
+    return uploadFilesService.getFilePermissions();
+
   }
 
   @GetMapping("/files/{filename:.+}")
