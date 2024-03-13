@@ -1,5 +1,15 @@
-{
-	"service": "department-service",
-	"fileContent": "file-content",
-	"description": "test"
-}
+
+[
+	{
+		"feature": "added redis support",
+		"description": "start redis server: Ubuntu,  sudo service redis-server start [stop]. ",		
+		"date": "03-13-2024"
+	},		
+	{
+		"service": "department-service",
+		"fileContent": "file-content",
+		"description": "test"		
+	}	
+		
+]
+	

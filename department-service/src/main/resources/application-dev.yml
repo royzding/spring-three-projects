@@ -9,7 +9,7 @@ spring:
     name: department-service
     
   datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver
+    driver-class-name: oracle.jdbc.OracleDriver
     url: jdbc:oracle:thin:@localhost:1521:orcl
     username: c##ding
     password: peardoor807x
