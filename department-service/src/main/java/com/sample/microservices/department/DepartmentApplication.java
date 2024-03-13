@@ -14,11 +14,10 @@ import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.servers.Server;
 
 @SpringBootApplication(scanBasePackages= {"com.sample.microservices.department","com.sample.microservices.common"})
-@EnableRedisRepositories(basePackages = "com.sample.microservices.redis.repository")
+//@EnableRedisRepositories(basePackages = "com.sample.microservices.redis.repository")
 @EnableDiscoveryClient
 @EnableFeignClients
 @EnableScheduling
-
 @OpenAPIDefinition(
 		servers = { 
 			@Server(url = "http://localhost:8082/department"),
