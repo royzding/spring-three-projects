@@ -1,0 +1,17 @@
+
+next.js setup
+
+--- to install the node module
+>npm install
+
+--- to install react react-dom next
+>npm install react react-dom next
+
+--- to run next app
+>npm run dev
+
+--- to view app
+http://localhost:3000/
+
+
+https://nextjs.org/learn-pages-router/basics/create-nextjs-app

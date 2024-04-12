@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.sample.microservices.batch.data.model.Person;
+import com.sample.microservices.batch.task.CronTaskInfo;
+import com.sample.microservices.batch.task.RunnableCronTask;
 
 public interface ScheduleTaskService {
 
@@ -16,6 +18,11 @@ public interface ScheduleTaskService {
     void scheduleRunnableAtFixedRate(Integer fixedRate);
     void scheduleRunnableWithCronTrigger();
     void scheduleRunnableWithPeriodicTrigger();
+    
+    // Schedule Runnable Cron Tasks to be executed
+	void scheduleCronTask(List<CronTaskInfo> tasks);
+	
+    void addCronTaskToScheduler(RunnableCronTask task);
     
 	// Schedule Task to be executed every night at 00 or 12 am
 	void addTaskToScheduler(int id, Runnable task);

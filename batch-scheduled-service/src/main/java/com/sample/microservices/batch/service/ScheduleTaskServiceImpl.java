@@ -1,5 +1,6 @@
 package com.sample.microservices.batch.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,9 +10,11 @@ import java.util.TimeZone;
 import java.util.concurrent.ScheduledFuture;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 import org.springframework.scheduling.support.CronTrigger;
 import org.springframework.scheduling.support.PeriodicTrigger;
@@ -19,6 +22,8 @@ import org.springframework.stereotype.Service;
 
 import com.sample.microservices.batch.data.model.Person;
 import com.sample.microservices.batch.repository.PersonRepository;
+import com.sample.microservices.batch.task.CronTaskInfo;
+import com.sample.microservices.batch.task.RunnableCronTask;
 import com.sample.microservices.batch.task.RunnableTask;
 import com.sample.microservices.batch.task.RunnableTaskTwo;
 
@@ -27,6 +32,8 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
 
 	// Task Scheduler	
 	private final TaskScheduler taskScheduler;
+	
+	private final AutowireCapableBeanFactory beanFactory;
 	
 	private final ThreadPoolTaskScheduler tpTaskscheduler;
 	
@@ -44,12 +51,14 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
     private final PersonRepository personRepository;
 	
 	public ScheduleTaskServiceImpl(TaskScheduler taskScheduler, ThreadPoolTaskScheduler tpTaskscheduler,
-			CronTrigger cronTrigger,PeriodicTrigger periodicTrigger, PersonRepository personRepository) {
+			CronTrigger cronTrigger,PeriodicTrigger periodicTrigger, PersonRepository personRepository,
+			AutowireCapableBeanFactory beanFactory) {
 		this.taskScheduler = taskScheduler;
 		this.tpTaskscheduler = tpTaskscheduler;
 		this.cronTrigger = cronTrigger;
 		this.periodicTrigger = periodicTrigger;
 		this.personRepository = personRepository;
+		this.beanFactory = beanFactory;
 	}
 	
 	@Override
@@ -141,4 +150,62 @@ public class ScheduleTaskServiceImpl implements ScheduleTaskService {
 	public List<Person> findAll() {
 		return this.personRepository.findAll();
 	}
+
+	/*
+		[
+		  {
+		    "id": 1,
+		    "cronStr": "1 * * * * ?",
+		    "message": "first second",
+		    "name": "name01"
+		  },
+		  {
+		    "id": 2,
+		    "cronStr": "10 * * * * ?",
+		    "message": "tenth second",
+		    "name": "name10"
+		  }
+		]
+	 */
+	
+	// Schedule Task to be executed every night at 00 or 12 am "0 0 0 * * ?"
+	@Override
+    public void addCronTaskToScheduler(RunnableCronTask task) {
+		
+		String cronStr = task.getCronTask().getCronStr();
+		TimeZone timeZone = TimeZone.getTimeZone(TimeZone.getDefault().getID());
+		
+		System.out.println(task.getCronTask().getName() + ":" + cronStr + ":" + timeZone);
+		
+		ScheduledFuture<?> scheduledTask = taskScheduler.schedule(task, new CronTrigger(cronStr, timeZone));
+		jobsMap.put(task.getCronTask().getId(), scheduledTask);
+	}
+	
+	@Override
+	public void scheduleCronTask(List<CronTaskInfo> tasks) {
+
+		tasks.forEach(t -> {
+			
+			RunnableCronTask rct = new RunnableCronTask(t);
+			
+			this.beanFactory.autowireBean(rct);
+			
+			this.removeTaskFromScheduler(t.getId());
+			
+			this.addCronTaskToScheduler(rct);
+			
+		} );
+		
+	}
+	
+	@Scheduled(cron = "10 * * * * *")
+	public void scheduled01() {
+		System.out.println("scheduled01 run @" + LocalDateTime.now());
+	}
+	
+	@Scheduled(cron = "20 * * * * *")
+	public void scheduled02() {
+		System.out.println("scheduled02 run@" + LocalDateTime.now());
+	}
+	
 }
