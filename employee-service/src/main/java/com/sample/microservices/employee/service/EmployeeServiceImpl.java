@@ -1,15 +1,14 @@
 package com.sample.microservices.employee.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mapstruct.factory.Mappers;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StopWatch;
 
+import com.sample.microservices.common.exception.NotFoundException;
 import com.sample.microservices.common.model.Department;
 import com.sample.microservices.common.model.Employee;
 import com.sample.microservices.common.model.EmployeeInfo;
@@ -39,7 +38,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	public Employee getEmployeeById(final Long id) {
-		Employee employee = this.mapper.entityToEmployee(this.repository.findById(id).get());
+		Employee employee = this.mapper.entityToEmployee(this.repository.findById(id)
+				.orElseThrow(()->new NotFoundException("Employee not found for id:" + id)));
 		employee.setDepName(this.departmentService.getDepartmentMap().get(employee.getDepId()).getName());
 		return employee;
 	}

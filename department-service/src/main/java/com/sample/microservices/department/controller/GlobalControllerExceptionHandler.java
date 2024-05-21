@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.sample.microservices.department.exception.InternalRuntimeException;
-import com.sample.microservices.department.exception.NotFoundException;
-import com.sample.microservices.department.exception.ValidationFailureException;
+import com.sample.microservices.common.exception.InternalRuntimeException;
+import com.sample.microservices.common.exception.NotFoundException;
+import com.sample.microservices.common.exception.ValidationFailureException;
 
 @RestControllerAdvice
 class GlobalControllerExceptionHandler {

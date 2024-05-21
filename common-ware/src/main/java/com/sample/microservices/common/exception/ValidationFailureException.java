@@ -1,4 +1,4 @@
-package com.sample.microservices.department.exception;
+package com.sample.microservices.common.exception;
 
 public class ValidationFailureException extends RuntimeException {
 	

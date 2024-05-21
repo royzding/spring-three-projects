@@ -13,6 +13,7 @@ import com.sample.microservices.common.annotation.Loggable;
 import com.sample.microservices.common.annotation.Loggable.Level;
 import com.sample.microservices.common.annotation.LoggableEvents;
 import com.sample.microservices.common.annotation.LoggableType;
+import com.sample.microservices.common.exception.NotFoundException;
 import com.sample.microservices.common.model.Department;
 import com.sample.microservices.common.model.Employee;
 import com.sample.microservices.department.data.model.DepartmentEntity;
@@ -43,7 +44,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 	@Override
 	public Department getDepartmentById(final Long id) {
 		
-		return this.mapper.entityToDepartment(this.repository.findById(id).get());
+		return this.mapper.entityToDepartment(this.repository.findById(id).orElseThrow(()->new NotFoundException("Not found for this id: " + id)));
 	}
 
 	@Override
