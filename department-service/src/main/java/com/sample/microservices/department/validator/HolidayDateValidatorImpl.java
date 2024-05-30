@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.sample.microservices.department.data.model.HolidayDateEntity;
-import com.sample.microservices.department.model.dto.HolidayDateDto;
-import com.sample.microservices.department.repository.HolidayDateRepository;
+import com.sample.microservices.common.model.dao.HolidayDateEntity;
+import com.sample.microservices.common.model.dto.HolidayDateDto;
+import com.sample.microservices.common.repository.HolidayDateRepository;
 
 @Service
 public class HolidayDateValidatorImpl implements HolidayDateValidator{

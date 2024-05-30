@@ -1,4 +1,4 @@
-package com.sample.microservices.department.data.model;
+package com.sample.microservices.common.model.dao;
 
 import com.sample.microservices.common.model.ParentEntity;
 

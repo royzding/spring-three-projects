@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -36,6 +37,11 @@ import io.swagger.v3.oas.annotations.servers.Server;
 		"com.sample.microservices.common.model.dao",
 		"com.sample.microservices.department.data.model"
 })
+@EnableJpaRepositories(basePackages = {
+		"com.sample.microservices.common.repository",
+		"com.sample.microservices.department.repository"		
+})
+
 public class DepartmentApplication {
 
 	public static void main(String[] args) {

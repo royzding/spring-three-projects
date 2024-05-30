@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sample.microservices.common.model.HolidayDate;
-import com.sample.microservices.department.model.dto.HolidayDateDto;
-import com.sample.microservices.department.service.HolidayDateService;
+import com.sample.microservices.common.model.dto.HolidayDateDto;
+import com.sample.microservices.common.service.HolidayDateService;
 import com.sample.microservices.department.validator.HolidayDateValidator;
 
 import io.swagger.v3.oas.annotations.Operation;

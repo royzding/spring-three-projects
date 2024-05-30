@@ -1,4 +1,4 @@
-package com.sample.microservices.department.map;
+package com.sample.microservices.common.map;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.springframework.stereotype.Component;
 
 import com.sample.microservices.common.model.HolidayDate;
-import com.sample.microservices.department.data.model.HolidayDateEntity;
-import com.sample.microservices.department.model.dto.HolidayDateDto;
+import com.sample.microservices.common.model.dao.HolidayDateEntity;
+import com.sample.microservices.common.model.dto.HolidayDateDto;
 
 @Component
 @Mapper(componentModel="spring", nullValuePropertyMappingStrategy=NullValuePropertyMappingStrategy.IGNORE)

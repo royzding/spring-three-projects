@@ -1,4 +1,4 @@
-package com.sample.microservices.department.repository;
+package com.sample.microservices.common.repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.sample.microservices.department.data.model.HolidayDateEntity;
+import com.sample.microservices.common.model.dao.HolidayDateEntity;
 
 @Repository
 public interface HolidayDateRepository extends JpaRepository<HolidayDateEntity, Long>{

@@ -5,6 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+
+import com.sample.microservices.common.service.HolidayDateServiceImpl;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.info.Contact;
@@ -12,7 +16,9 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.info.License;
 import io.swagger.v3.oas.annotations.servers.Server;
 
-@SpringBootApplication(scanBasePackages= {"com.sample.microservices.employee.*","com.sample.microservices.common.*"})
+@SpringBootApplication
+@ComponentScan(basePackages= {"com.sample.microservices.employee.*","com.sample.microservices.common.*"},
+				excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = HolidayDateServiceImpl.class))
 @EnableDiscoveryClient
 @EnableFeignClients
 @OpenAPIDefinition(

@@ -13,10 +13,10 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
-import com.sample.microservices.department.data.model.HolidayDateEntity;
-import com.sample.microservices.department.map.HolidayDateMapper;
-import com.sample.microservices.department.model.dto.HolidayDateDto;
-import com.sample.microservices.department.repository.HolidayDateRepository;
+import com.sample.microservices.common.map.HolidayDateMapper;
+import com.sample.microservices.common.model.dao.HolidayDateEntity;
+import com.sample.microservices.common.model.dto.HolidayDateDto;
+import com.sample.microservices.common.repository.HolidayDateRepository;
 import com.sample.microservices.department.service.BaseTest;
 
 public class HolidayDateValidatorTest extends BaseTest {

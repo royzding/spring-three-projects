@@ -1,4 +1,4 @@
-package com.sample.microservices.department.service;
+package com.sample.microservices.common.service;
 
 import java.util.List;
 
@@ -13,11 +13,11 @@ import com.sample.microservices.common.annotation.Loggable;
 import com.sample.microservices.common.annotation.Loggable.Level;
 import com.sample.microservices.common.annotation.LoggableEvents;
 import com.sample.microservices.common.annotation.LoggableType;
+import com.sample.microservices.common.map.HolidayDateMapper;
 import com.sample.microservices.common.model.HolidayDate;
-import com.sample.microservices.department.data.model.HolidayDateEntity;
-import com.sample.microservices.department.map.HolidayDateMapper;
-import com.sample.microservices.department.model.dto.HolidayDateDto;
-import com.sample.microservices.department.repository.HolidayDateRepository;
+import com.sample.microservices.common.model.dao.HolidayDateEntity;
+import com.sample.microservices.common.model.dto.HolidayDateDto;
+import com.sample.microservices.common.repository.HolidayDateRepository;
 
 @Service
 @LoggableType

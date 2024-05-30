@@ -1,9 +1,9 @@
-package com.sample.microservices.department.service;
+package com.sample.microservices.common.service;
 
 import java.util.List;
 
 import com.sample.microservices.common.model.HolidayDate;
-import com.sample.microservices.department.model.dto.HolidayDateDto;
+import com.sample.microservices.common.model.dto.HolidayDateDto;
 
 public interface HolidayDateService {
 

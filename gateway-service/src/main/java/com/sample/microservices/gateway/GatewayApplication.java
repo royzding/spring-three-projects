@@ -13,9 +13,15 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionLocator;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Lazy;
 
-@SpringBootApplication (scanBasePackages= {"com.sample.microservices.gateway.*","com.sample.microservices.common.*"})
+import com.sample.microservices.common.service.HolidayDateServiceImpl;
+
+@SpringBootApplication 
+@ComponentScan(basePackages= {"com.sample.microservices.gateway.*","com.sample.microservices.common.*"},
+				excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = HolidayDateServiceImpl.class))
 @EnableDiscoveryClient
 public class GatewayApplication {
 
