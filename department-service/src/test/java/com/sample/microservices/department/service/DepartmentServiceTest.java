@@ -10,13 +10,12 @@ import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sample.microservices.common.model.Department;
-import com.sample.microservices.department.data.model.DepartmentEntity;
+import com.sample.microservices.common.model.dao.DepartmentEntity;
 import com.sample.microservices.department.employee.EmployeeService;
 import com.sample.microservices.department.map.DepartmentMapper;
 import com.sample.microservices.department.model.dto.DepartmentDto;

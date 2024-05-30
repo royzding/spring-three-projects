@@ -16,7 +16,7 @@ import com.sample.microservices.common.annotation.LoggableType;
 import com.sample.microservices.common.exception.NotFoundException;
 import com.sample.microservices.common.model.Department;
 import com.sample.microservices.common.model.Employee;
-import com.sample.microservices.department.data.model.DepartmentEntity;
+import com.sample.microservices.common.model.dao.DepartmentEntity;
 import com.sample.microservices.department.data.model.DepartmentWZEntity;
 import com.sample.microservices.department.employee.EmployeeService;
 import com.sample.microservices.department.map.DepartmentMapper;

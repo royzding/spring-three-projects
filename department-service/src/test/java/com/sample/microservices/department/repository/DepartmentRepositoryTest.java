@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.sample.microservices.department.data.model.DepartmentEntity;
+import com.sample.microservices.common.model.dao.DepartmentEntity;
 import com.sample.microservices.department.service.BaseTest;
 
 class DepartmentRepositoryTest extends BaseTest {

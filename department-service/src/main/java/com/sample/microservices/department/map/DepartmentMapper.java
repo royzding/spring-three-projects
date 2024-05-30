@@ -9,7 +9,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.springframework.stereotype.Component;
 
 import com.sample.microservices.common.model.Department;
-import com.sample.microservices.department.data.model.DepartmentEntity;
+import com.sample.microservices.common.model.dao.DepartmentEntity;
 import com.sample.microservices.department.data.model.DepartmentWZEntity;
 import com.sample.microservices.department.model.dto.DepartmentDto;
 

@@ -2,6 +2,7 @@ package com.sample.microservices.employee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
@@ -27,6 +28,10 @@ import io.swagger.v3.oas.annotations.servers.Server;
 		name = "Roy", 
 		email = "Roy@example.com"))
 )
+@EntityScan(basePackages = {
+		"com.sample.microservices.common.model.dao",
+		"com.sample.microservices.employee.model.dao"
+})
 public class EmployeeApplication {
 
 	public static void main(String[] args) {

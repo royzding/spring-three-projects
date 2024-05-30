@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.sample.microservices.department.data.model.DepartmentEntity;
+import com.sample.microservices.common.model.dao.DepartmentEntity;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<DepartmentEntity, Long>{
