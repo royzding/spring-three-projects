@@ -14,9 +14,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.sample.microservices.common.model.Employee;
 import com.sample.microservices.multipledb.map.EmployeeMapper;
 import com.sample.microservices.multipledb.map.ManagerMapper;
-import com.sample.microservices.multipledb.model.EmployeeEntity;
-import com.sample.microservices.multipledb.repository.EmployeeEntityRepository;
-import com.sample.microservices.multipledb.repository.ManagerEntityRepository;
+import com.sample.microservices.multipledb.model.first.EmployeeEntity;
+import com.sample.microservices.multipledb.repository.first.EmployeeEntityRepository;
+import com.sample.microservices.multipledb.repository.first.ManagerEntityRepository;
+import com.sample.microservices.multipledb.repository.second.OrderEntityRepository;
+import com.sample.microservices.multipledb.repository.second.UserEntityRepository;
 import com.sample.microservices.multipledb.service.MultipledbService;
 import com.sample.microservices.multipledb.service.MultipledbServiceImpl;
 
@@ -35,12 +37,18 @@ class MultipledbServiceTest extends BaseTest {
 	private ManagerEntityRepository manRepository;
 	
 	@MockBean
-	private MultipledbService organizationService;
+	private UserEntityRepository userEntityRepository;
+	
+	@MockBean
+	private OrderEntityRepository orderEntityRepository;	
+	
+	@MockBean
+	private MultipledbService multipledbService;
 	
 	@BeforeEach
 	void setUp() throws JsonMappingException, JsonProcessingException {
 		
-		organizationService = new MultipledbServiceImpl(empMapper, empRepository, manMapper, manRepository);
+		multipledbService = new MultipledbServiceImpl(empMapper, empRepository, manMapper, manRepository, userEntityRepository, orderEntityRepository);
 		
 	}
 	
@@ -53,7 +61,7 @@ class MultipledbServiceTest extends BaseTest {
 		
 		Mockito.when(this.empRepository.findById(1L)).thenReturn(Optional.ofNullable(eEntity));
 		
-		Employee employee = this.organizationService.getEmployeeById(1L);
+		Employee employee = this.multipledbService.getEmployeeById(1L);
 		
 		assertEquals(1L, employee.getId());
 		

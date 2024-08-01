@@ -1,15 +1,15 @@
-package com.sample.microservices.multipledb.model;
+package com.sample.microservices.multipledb.model.second;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "orders", schema = "c##wanzun")
+@Table(name = "orders")
 public class OrderEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Integer id;
 

@@ -21,3 +21,21 @@ INSERT INTO users (id, username, password) VALUES(6, 'royding6','cs6');
 
 commit;
 
+
+
+DROP TABLE users;
+DROP TABLE orders;
+
+CREATE TABLE users 
+(	 id 			INTEGER GENERATED ALWAYS as Identity primary key, 
+	 first_name 			VARCHAR2(50 CHAR), 
+	 last_name 			VARCHAR2(50 CHAR), 
+	 email 			VARCHAR2(50 CHAR)
+);
+
+CREATE TABLE orders 
+(	 id 			INTEGER GENERATED ALWAYS as Identity primary key, 
+	 product_name 			VARCHAR2(50 CHAR), 
+	 order_amount 			NUMBER(10,2), 
+	 user_id 			INTEGER
+);

@@ -8,7 +8,7 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.springframework.stereotype.Component;
 
 import com.sample.microservices.common.model.Manager;
-import com.sample.microservices.multipledb.model.ManagerEntity;
+import com.sample.microservices.multipledb.model.first.ManagerEntity;
 
 @Component
 @Mapper(componentModel="spring", nullValuePropertyMappingStrategy=NullValuePropertyMappingStrategy.IGNORE)

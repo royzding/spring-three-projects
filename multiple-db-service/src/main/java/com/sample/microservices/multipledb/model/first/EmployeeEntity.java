@@ -1,4 +1,4 @@
-package com.sample.microservices.multipledb.model;
+package com.sample.microservices.multipledb.model.first;
 
 import com.sample.microservices.common.model.ParentEntity;
 
@@ -9,7 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name="employee", schema = "c##ding")
+@Table(name="employee")
 
 @Getter
 @Setter

@@ -7,7 +7,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -19,40 +18,36 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-    entityManagerFactoryRef = "userEntityManagerFactory",
-    transactionManagerRef = "userTransactionManager",
-    basePackages = {"com.howtodoinjava.app.repositories.user"})
-public class UserDatasourceConfiguration {
+    entityManagerFactoryRef = "firstEntityManagerFactory",
+    transactionManagerRef = "firstTransactionManager",
+    basePackages = {"com.sample.microservices.multipledb.repository.first"})
+public class FirstDatasourceConfiguration {
 
-  @Primary
-  @Bean(name = "userProperties")
-  @ConfigurationProperties("spring.datasource")
+  @Bean(name = "firstProperties")
+  @ConfigurationProperties("spring.datasource01")
   public DataSourceProperties dataSourceProperties() {
     return new DataSourceProperties();
   }
 
-  @Primary
-  @Bean(name = "userDatasource")
-  @ConfigurationProperties(prefix = "spring.datasource")
-  public DataSource datasource(@Qualifier("userProperties") DataSourceProperties properties) {
+  @Bean(name = "firstDatasource")
+  @ConfigurationProperties(prefix = "spring.datasource01")
+  public DataSource datasource(@Qualifier("firstProperties") DataSourceProperties properties) {
     return properties.initializeDataSourceBuilder().build();
   }
 
-  @Primary
-  @Bean(name = "userEntityManagerFactory")
+  @Bean(name = "firstEntityManagerFactory")
   public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean
       (EntityManagerFactoryBuilder builder,
-       @Qualifier("userDatasource") DataSource dataSource) {
+       @Qualifier("firstDatasource") DataSource dataSource) {
     return builder.dataSource(dataSource)
-        .packages("com.howtodoinjava.app.model.user")
-        .persistenceUnit("users").build();
+        .packages("com.sample.microservices.multipledb.model.first","com.sample.microservices.common.repository")
+        .persistenceUnit("firstPU").build();
   }
 
-  @Primary
-  @Bean(name = "userTransactionManager")
+  @Bean(name = "firstTransactionManager")
   @ConfigurationProperties("spring.jpa")
   public PlatformTransactionManager transactionManager(
-      @Qualifier("userEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+      @Qualifier("firstEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
     return new JpaTransactionManager(entityManagerFactory);
   }
 }

@@ -7,6 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -18,36 +19,40 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-    entityManagerFactoryRef = "orderEntityManagerFactory",
-    transactionManagerRef = "orderTransactionManager",
-    basePackages = {"com.howtodoinjava.app.repositories.order"})
-public class OrderDatasourceConfiguration {
+    entityManagerFactoryRef = "secondEntityManagerFactory",
+    transactionManagerRef = "secondTransactionManager",
+    basePackages = {"com.sample.microservices.multipledb.repository.second"})
+public class SecondDatasourceConfiguration {
 
-  @Bean(name = "orderProperties")
-  @ConfigurationProperties("spring.datasource.order")
+  @Primary
+  @Bean(name = "secondProperties")
+  @ConfigurationProperties("spring.datasource02")
   public DataSourceProperties dataSourceProperties() {
     return new DataSourceProperties();
   }
 
-  @Bean(name = "orderDatasource")
-  @ConfigurationProperties(prefix = "spring.datasource.order")
-  public DataSource datasource(@Qualifier("orderProperties") DataSourceProperties properties) {
+  @Primary
+  @Bean(name = "secondDatasource")
+  @ConfigurationProperties(prefix = "spring.datasource02")
+  public DataSource datasource(@Qualifier("secondProperties") DataSourceProperties properties) {
     return properties.initializeDataSourceBuilder().build();
   }
 
-  @Bean(name = "orderEntityManagerFactory")
+  @Primary
+  @Bean(name = "secondEntityManagerFactory")
   public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean
       (EntityManagerFactoryBuilder builder,
-       @Qualifier("orderDatasource") DataSource dataSource) {
+       @Qualifier("secondDatasource") DataSource dataSource) {
     return builder.dataSource(dataSource)
-        .packages("com.howtodoinjava.app.model.order")
-        .persistenceUnit("order").build();
+        .packages("com.sample.microservices.multipledb.model.second")
+        .persistenceUnit("secondPU").build();
   }
 
-  @Bean(name = "orderTransactionManager")
+  @Primary
+  @Bean(name = "secondTransactionManager")
   @ConfigurationProperties("spring.jpa")
   public PlatformTransactionManager transactionManager(
-      @Qualifier("orderEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
+      @Qualifier("secondEntityManagerFactory") EntityManagerFactory entityManagerFactory) {
     return new JpaTransactionManager(entityManagerFactory);
   }
 }
