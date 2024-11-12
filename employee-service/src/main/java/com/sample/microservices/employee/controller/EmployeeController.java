@@ -1,10 +1,14 @@
 package com.sample.microservices.employee.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +26,7 @@ import com.sample.microservices.employee.model.dao.EmployeeEntity;
 import com.sample.microservices.employee.model.dto.EmployeeDto;
 import com.sample.microservices.employee.model.dto.ValidEmployee;
 import com.sample.microservices.employee.service.EmployeeService;
+import com.sample.microservices.employee.service.PdfService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -39,8 +44,11 @@ public class EmployeeController {
 	
 	private final EmployeeService employeeService;
 	
+	private final PdfService pdfService;
+	
 	EmployeeController(EmployeeService employeeService) {
-		this.employeeService = employeeService;		
+		this.employeeService = employeeService;
+		this.pdfService = new PdfService();		
 	}
 
 	@GetMapping("/department/all")
@@ -193,5 +201,27 @@ public class EmployeeController {
 		return this.employeeService.getEmployeesByManagerIdAndDeptId(mId, dId);
 	}
 
+    @GetMapping("/generate-pdf")
+    public ResponseEntity<byte[]> generatePdf() throws IOException {
+        byte[] pdfBytes = pdfService.generatePdf();
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("attachment", "generated.pdf");
+
+        return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
+    }
+    
+    @GetMapping("/create-pdf")
+    public ResponseEntity<byte[]> createPdf() {
+    	
+        byte[] pdfBytes = pdfService.createPdf();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("attachment", "generated.pdf");
+
+        return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
+    }
+    
 }

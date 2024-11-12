@@ -41,6 +41,8 @@
     	<mockito-core.version>3.9.0</mockito-core.version>
     	<h2.version>2.2.220</h2.version>
     	<common-ware.version>3.0.0</common-ware.version>    
+    	<itext-core.version>8.0.5</itext-core.version>    
+    	<itext-layout.version>8.0.5</itext-layout.version>     
                 
         <sonar.projectKey>sample-microservices-pkey</sonar.projectKey>
         <sonar.organization>com.sample</sonar.organization>
@@ -324,6 +326,19 @@
 		    <groupId>org.commonmark</groupId>
 		    <artifactId>commonmark</artifactId>
 		    <version>${commonmark.version}</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.itextpdf</groupId>
+		    <artifactId>itext-core</artifactId>
+		    <version>${itext-core.version}</version>
+		    <type>pom</type>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.itextpdf</groupId>
+		    <artifactId>layout</artifactId>
+		    <version>${itext-layout.version}</version>
 		</dependency>
 
         </dependencies>
