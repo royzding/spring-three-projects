@@ -1,4 +1,7 @@
 
+//royzding.git
+https://github.com/royzding/spring-projects
+
 #How to Remove Git from the Project?
 
 rm -rf .git*
