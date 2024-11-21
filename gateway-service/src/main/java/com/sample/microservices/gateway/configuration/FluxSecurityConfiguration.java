@@ -14,17 +14,23 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.util.matcher.NegatedServerWebExchangeMatcher;
 import org.springframework.security.web.server.util.matcher.PathPatternParserServerWebExchangeMatcher;
 
+import com.sample.microservices.gateway.filter.JwtAuthenticationFilter;
 import com.sample.microservices.gateway.filter.SecurityWebFilter;
+
+import lombok.RequiredArgsConstructor;
 
 @Configuration
 //@Profile("flux-security")
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
+@RequiredArgsConstructor
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class FluxSecurityConfiguration {
 
 	@Value("${auth.svcKey}")
 	private String svcKey;
+	
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 	
 	@Bean
 	SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) throws Exception {
@@ -40,6 +46,7 @@ public class FluxSecurityConfiguration {
 				  .disable().headers()
 				  .contentSecurityPolicy("script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self'; default-src 'self' frame-ancestors 'none';" )
 				  .and().and()
+				  .addFilterAt(jwtAuthenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
 				  .build();
 	}
 	
