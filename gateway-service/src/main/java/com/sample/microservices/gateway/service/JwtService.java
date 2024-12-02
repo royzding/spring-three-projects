@@ -18,7 +18,7 @@ public class JwtService {
     @Value("${security.jwt.secret-key}")
     private String secretKey;
 
-    @Value("${security.jwt.expiration-time}")
+    @Value("${security.jwt.expiration-time-milliseconds}")
     private long jwtExpiration;
     
     public String extractEmail(String jwt) {

@@ -73,4 +73,5 @@ public class GatewayApplication {
 	
 }
 
+//swagger: http://localhost:8082/
 //-Dspring.profiles.active=local,user-detail

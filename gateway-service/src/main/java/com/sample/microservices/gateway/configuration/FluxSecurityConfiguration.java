@@ -46,7 +46,7 @@ public class FluxSecurityConfiguration {
 				  .disable().headers()
 				  .contentSecurityPolicy("script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; connect-src 'self'; default-src 'self' frame-ancestors 'none';" )
 				  .and().and()
-				  .addFilterAt(jwtAuthenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
+				  //.addFilterAt(jwtAuthenticationFilter, SecurityWebFiltersOrder.AUTHENTICATION)
 				  .build();
 	}
 	

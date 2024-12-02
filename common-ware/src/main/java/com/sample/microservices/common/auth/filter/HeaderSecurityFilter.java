@@ -29,7 +29,8 @@ public class HeaderSecurityFilter extends OncePerRequestFilter {
     	String svcHeader = request.getHeader(HEADER_SVC_KEY);
     	
     	System.out.println("====svcKey=========" + svcKey);
-    	System.out.println("=============" + request.getRequestURI());
+    	System.out.println("======request=======" + request.toString());
+    	System.out.println("======request.getRequestURI()=======" + request.getRequestURI());
     	System.out.println("=====svcHeader========" + svcHeader);
     	 
         if(svcHeader == null || !svcHeader.equals(this.svcKey)) {

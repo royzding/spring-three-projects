@@ -123,7 +123,7 @@ springdoc:
         url: /v3/api-docs/webflux-oracle
         
 auth:
-  check-url: false
+  check-url: true
   check-auth: true
   token:
     header: X-SVC-AUTH
@@ -140,4 +140,8 @@ logging:
   pattern: 
     console: "%d{yyyy-MM-dd HH:mm:ss} [%X{traceId:-},%X{spanId:-}] ${LOG_LEVEL_PATTERN:-%5p} %m%n"
               
+security:
+  jwt:
+    secret-key: my-secret
+    expiration-time-milliseconds: 100000000
       

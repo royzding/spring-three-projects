@@ -31,7 +31,7 @@ public class JwtAuthenticationFilter implements WebFilter {
 
 	@Override
 	public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-		
+/*		
         String jwt = extractTokenFromRequest(exchange);
         log.info("JWT: " + jwt);
         
@@ -64,7 +64,7 @@ public class JwtAuthenticationFilter implements WebFilter {
                 }
             }
         }
-
+*/
         return chain.filter(exchange);
         
 	}

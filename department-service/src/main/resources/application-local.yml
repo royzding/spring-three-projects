@@ -74,9 +74,9 @@ schedule:
     in:
       milliseconds: 1000 
 
-app:
-  jwt-secret: my-secret
-
-app-jwt-expiration-milliseconds: 711100000
+security:
+  jwt:
+    secret-key: my-secret
+    expiration-time-milliseconds: 100000000
   
    

@@ -1,11 +1,14 @@
 package com.sample.microservices.gateway.configuration;
 
+import java.net.URI;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
@@ -16,6 +19,7 @@ import com.sample.microservices.gateway.filter.AuthorizationFilterUtil;
 
 import reactor.core.publisher.Mono;
 
+@Configuration
 public class ApiGatewayConfiguration {
 
     final Logger logger =  LoggerFactory.getLogger(ApiGatewayConfiguration.class);
@@ -51,10 +55,13 @@ public class ApiGatewayConfiguration {
 	        final ServerHttpRequest request = exchange.getRequest();
 	        
 	        if(checkUrl) {
-	        	final HttpHeaders headers = request.getHeaders();
-	        	final String url = headers.getFirst(headerUrl);
+	        	//final HttpHeaders headers = request.getHeaders();
+	        	//final String url = headers.getFirst(headerUrl);
+	        	final URI uri = exchange.getRequest().getURI();
 	        	
-	        	if(url == null || !url.startsWith(headerUrlValue)) {
+	        	System.out.println("-----------------" + uri.toString());
+	        	
+	        	if(uri == null || !uri.toString().startsWith(headerUrlValue)) {
 	        		
 	        		String cause = "Access unauthorized: url headers not right!";
 	        		
