@@ -267,6 +267,51 @@ Any join point (method execution only in Spring AOP) within the service package 
         }
         System.out.println("****LoggingAspect.logAroundCreateEmployee() : " + joinPoint.getSignature().getName() + ": After Method Execution");
     }    
+
+    
+class Test {
+
+@override
+	public String a(){
+		b();
+	}
+}
+
+private String b() {
+	//c();
+}   
+
+class Test2 {
+	public String b() {}   
+}
+    //intercept the called method A() which is inside of another calling method such as getEmployee().
+    // called method A() needs to be in another class or interface and put @Around the method
+     
+    @Around("execution(* com.sample.microservices.service.EmployeeService.getEmployee(..))") 
+    public void logAroundGetEmployee(ProceedingJoinPoint joinPoint) throws Throwable 
+    {
+        System.out.println("****LoggingAspect.logAroundGetEmployee() : " + joinPoint.getSignature().getName() + ": Before Method Execution");
+        try {
+            joinPoint.proceed();
+        } finally {
+            //Do Something useful, If you have
+        }
+        System.out.println("****LoggingAspect.logAroundGetEmployee() : " + joinPoint.getSignature().getName() + ": After Method Execution");
+    }
+   
+    @Around("execution(* com.sample.microservices.service.calledMethods.A(..))") 
+    public void logAroundA(ProceedingJoinPoint joinPoint) throws Throwable 
+    {
+        System.out.println("****LoggingAspect.logAroundGetEmployee() : " + joinPoint.getSignature().getName() + ": Before Method Execution");
+        try {
+            joinPoint.proceed();
+        } finally {
+            //Do Something useful, If you have
+        }
+        System.out.println("****LoggingAspect.logAroundGetEmployee() : " + joinPoint.getSignature().getName() + ": After Method Execution");
+    }
+   
+    
 */
 	
 }
