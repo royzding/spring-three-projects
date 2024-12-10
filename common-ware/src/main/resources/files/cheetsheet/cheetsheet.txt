@@ -75,5 +75,3 @@ https://cloud.spring.io/spring-cloud-pipelines/multi/multi_concourse-pipeline-cf
 https://github.com/vmware-tanzu-labs/artifactory-resource
 
 https://github.com/geofffranks/artifactory-resource
-
-testing new token
