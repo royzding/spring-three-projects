@@ -40,7 +40,7 @@ public class EmployeeRepositoryTest {
         Assert.notNull(employee, "Employee is null.");
         Assert.isTrue(employee.getId() == 1L, "Employee bad id.");
     }
-*/
+
     @Test
     @Order(2)
     void testFindAll() {
@@ -48,7 +48,7 @@ public class EmployeeRepositoryTest {
         //Assert.isTrue(employees.size() == 1, "Employees size is wrong.");
         Assert.isTrue(true, "Employee bad id.");
     }
-/*
+
     @Test
     @Order(3)
     void testFindByDepartment() {

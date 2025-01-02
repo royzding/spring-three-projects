@@ -8,9 +8,11 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.HttpHeaders;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
@@ -21,7 +23,17 @@ import com.sample.microservices.common.auth.config.SecurityConfiguration;
 
 @ActiveProfiles({"unit", "api-security"})
 @AutoConfigureMockMvc
-@ComponentScan({"com.sample.microservices.employee","com.sample.microservices.common.*","com.sample.microservices.common.model.*"})
+//@ComponentScan({"com.sample.microservices.department","com.sample.microservices.employee","com.sample.microservices.common.*","com.sample.microservices.common.model.*"})
+@EntityScan(basePackages = {
+		"com.sample.microservices.common.model.dao",
+		"com.sample.microservices.department.data.model",
+		"com.sample.microservices.employee.data.model"
+})
+@EnableJpaRepositories(basePackages = {
+		"com.sample.microservices.common.repository",
+		"com.sample.microservices.department.repository",
+		"com.sample.microservices.employee.repository"
+})
 @Import(SecurityConfiguration.class)
 class BaseControllerTest {
 	
@@ -50,5 +62,5 @@ class BaseControllerTest {
 	@Test
 	void test_default() {
 		assertTrue(true);
-	}
+	}	
 }
