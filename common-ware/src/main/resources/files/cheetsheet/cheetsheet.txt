@@ -12,10 +12,15 @@
 //webflux-mongodb-service
 //-Dspring.profiles.active=local,flux-security
 
-//other services
+//other services for STS
 -Dspring.profiles.active=local,api-security,user-info
 -Dspring.profiles.active=dev,api-security,user-info
 -Dspring.profiles.active=prod,api-security,user-info
+
+//other services for Intellij (set in environment variable:)
+spring.profiles.active=local,api-security,user-info
+spring.profiles.active=dev,api-security,user-info
+spring.profiles.active=prod,api-security,user-info
 
 
 X-USER-INFO    {"userName":"roy"}
