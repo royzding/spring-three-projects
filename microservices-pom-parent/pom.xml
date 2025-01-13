@@ -10,7 +10,7 @@
 
     <groupId>com.sample.microservices</groupId>
     <artifactId>microservices-pom-parent</artifactId>
-    <version>3.0.0</version>
+    <version>3.2.0</version>
     <packaging>pom</packaging>
     <name>microservices-pom-parent</name>
     <description>microservices pom parent</description>
@@ -40,7 +40,7 @@
 
     	<mockito-core.version>3.9.0</mockito-core.version>
     	<h2.version>2.2.220</h2.version>
-    	<common-ware.version>3.0.0</common-ware.version>    
+    	<common-ware.version>3.2.1</common-ware.version>
     	<itext-core.version>8.0.5</itext-core.version>    
     	<itext-layout.version>8.0.5</itext-layout.version>     
                 

@@ -58,9 +58,11 @@ class BaseControllerTest {
 		
 		mapper.registerModule(new JavaTimeModule());
 	}
-	
+	/*
 	@Test
 	void test_default() {
 		assertTrue(true);
-	}	
+	}
+
+	 */
 }

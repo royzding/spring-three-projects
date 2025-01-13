@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.sample.microservices</groupId>
         <artifactId>microservices-pom-parent</artifactId>
-        <version>3.0.0</version>
+        <version>3.2.0</version>
     </parent>
 	
 	<properties>
@@ -14,6 +14,7 @@
 	
 	<artifactId>common-ware</artifactId>
 	<packaging>jar</packaging>
+	<version>3.2.1</version>
 	<name>common-ware</name>
 	<description>common-ware project for Spring Boot Three</description>
 	

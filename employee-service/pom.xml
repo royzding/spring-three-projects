@@ -4,11 +4,11 @@
     <parent>
         <groupId>com.sample.microservices</groupId>
         <artifactId>microservices-pom-parent</artifactId>
-        <version>3.0.0</version>
+        <version>3.2.0</version>
     </parent>
     
     <artifactId>employee-service</artifactId>
-    <version>1.0.0</version>
+    <version>3.2.1</version>
 
     <properties>
         <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
