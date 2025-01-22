@@ -1,5 +1,6 @@
 package com.sample.microservices.common.versions.v08;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -39,6 +40,18 @@ public class ListToList {
 
     }
 
+    //reverse a list
+    public static void reverseList() {
+
+        List<Car> cList = Car.getDuplicatedCarList();
+
+        System.out.println(cList);
+
+        Collections.reverse(cList);
+
+        System.out.println(cList);
+
+    }
 }
 
 
