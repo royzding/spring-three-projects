@@ -27,4 +27,11 @@ PONG
 
 4. stop redis server:
 
+127.0.0.1:6379>shutdown
+
+5. check if redis service is running
+$redis-cli ping
+PONG ---running
+not connected ---not running
+
 sudo service redis-server stop

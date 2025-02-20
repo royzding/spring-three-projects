@@ -4,7 +4,7 @@
 //config
 
 //api-gateway
--Dspring.profiles.active=dev
+-Dspring.profiles.active=dev,user-detail
 
 //discovery
 -Dspring.profiles.active=dev,api-security
@@ -13,17 +13,24 @@
 //-Dspring.profiles.active=local,flux-security
 
 //other services for STS
--Dspring.profiles.active=local,api-security,user-info
--Dspring.profiles.active=dev,api-security,user-info
--Dspring.profiles.active=prod,api-security,user-info
+-Dspring.profiles.active=local,api-security,user-detail
+-Dspring.profiles.active=dev,api-security,user-detail
+-Dspring.profiles.active=prod,api-security,user-detail
+
+//for Intellij
+//api-gateway
+-Dspring.profiles.active=dev,user-detail
+
+//discovery
+-Dspring.profiles.active=dev,api-security
 
 //other services for Intellij (set in environment variable:)
-spring.profiles.active=local,api-security,user-info
-spring.profiles.active=dev,api-security,user-info
-spring.profiles.active=prod,api-security,user-info
+spring.profiles.active=local,api-security,user-detail
+spring.profiles.active=dev,api-security,user-detail
+spring.profiles.active=prod,api-security,user-detail
 
 
-X-USER-INFO    {"userName":"roy"}
+X-USER-DETAIL    {"userName":"roy"}
 
 //useful links
 
