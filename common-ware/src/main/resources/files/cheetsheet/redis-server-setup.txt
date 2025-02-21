@@ -35,3 +35,5 @@ PONG ---running
 not connected ---not running
 
 sudo service redis-server stop
+
+testing
