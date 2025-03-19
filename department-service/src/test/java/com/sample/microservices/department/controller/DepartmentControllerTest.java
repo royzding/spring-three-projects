@@ -3,6 +3,7 @@ package com.sample.microservices.department.controller;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -16,9 +17,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -26,7 +29,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.sample.microservices.common.model.Department;
 import com.sample.microservices.department.service.DepartmentService;
 
-@WebMvcTest(controllers=DepartmentController.class)
+@SpringBootTest(classes = DepartmentController.class)
 class DepartmentControllerTest extends BaseControllerTest{
 
 	@Autowired
@@ -67,18 +70,20 @@ class DepartmentControllerTest extends BaseControllerTest{
 				.constructCollectionLikeType(List.class, Department.class));
 		
 	}
-/*
+
 	@Test
 	void test_getDepartmentById() throws Exception {
 		
 		when(service.getDepartmentById(10L)).thenReturn(department);
-		
-		this.mockMvc.perform(get("/department-controller/10")
-				.headers(httpHeaders)).andExpect(status().isOk())
+
+		ResultActions response = this.mockMvc.perform(get("/department-controller/10"));
+
+		//verify the output
+		response.andExpect(status().isOk())
+				.andDo(print())
 				.andExpect(jsonPath("$.id", is(10)));
-		
 	}
-	
+
 	@Test
 	void test_getAllDepartments() throws Exception {
 		
@@ -89,7 +94,7 @@ class DepartmentControllerTest extends BaseControllerTest{
 				.andExpect(jsonPath("$.size()", is(departments.size())));
 		
 	}
-	
+
 	@Test
 	void test_getAllDepartmentsWithEmpty() throws Exception {
 		
@@ -102,5 +107,4 @@ class DepartmentControllerTest extends BaseControllerTest{
 				.andExpect(jsonPath("$.size()", is(departments.size())));
 		
 	}
-*/
 }

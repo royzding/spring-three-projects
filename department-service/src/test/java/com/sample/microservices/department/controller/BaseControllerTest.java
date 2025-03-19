@@ -23,17 +23,7 @@ import com.sample.microservices.common.auth.config.SecurityConfiguration;
 
 @ActiveProfiles({"unit", "api-security"})
 @AutoConfigureMockMvc
-//@ComponentScan({"com.sample.microservices.department","com.sample.microservices.employee","com.sample.microservices.common.*","com.sample.microservices.common.model.*"})
-@EntityScan(basePackages = {
-		"com.sample.microservices.common.model.dao",
-		"com.sample.microservices.department.data.model",
-		"com.sample.microservices.employee.data.model"
-})
-@EnableJpaRepositories(basePackages = {
-		"com.sample.microservices.common.repository",
-		"com.sample.microservices.department.repository",
-		"com.sample.microservices.employee.repository"
-})
+@ComponentScan({"com.sample.microservices.department","com.sample.microservices.common.*","com.sample.microservices.common.model.*"})
 @Import(SecurityConfiguration.class)
 class BaseControllerTest {
 	

@@ -87,3 +87,8 @@ https://cloud.spring.io/spring-cloud-pipelines/multi/multi_concourse-pipeline-cf
 https://github.com/vmware-tanzu-labs/artifactory-resource
 
 https://github.com/geofffranks/artifactory-resource
+
+----jmap
+
+>jps to get the pid
+>jmap -dump:file=test.bin pid
