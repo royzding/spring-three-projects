@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
 
+import com.sample.microservices.department.config.RedisConfigPojo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,6 +31,9 @@ public class FileInfoController {
 	
 	@Value("classpath:fileInfo.json")
 	private Resource myResource;
+
+	@Autowired
+	private RedisConfigPojo redisConfigPojo;
 	
 	@Operation(summary="get an department by id")
 	@ApiResponses(value= {
@@ -45,6 +50,11 @@ public class FileInfoController {
 	@GetMapping("/{date}")
 	public LocalDate getDateInfo(@PathVariable("date") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE) LocalDate date) {
 		return date;
+	}
+
+	@GetMapping("/test")
+	public String getTestInfo() {
+		return "Test:" + this.redisConfigPojo.getHost() + ";" + this.redisConfigPojo.getPort();
 	}
 	
 }

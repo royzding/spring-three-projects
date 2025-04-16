@@ -102,3 +102,111 @@ To kill any process listening to the port 8080:
 $ kill $(lsof -t -i:8080)
 $ kill -9 $(lsof -t -i:8080)
 
+
+***docker image files
+
+%localappdata%\Docker\wsl
+
+5. Start the Kafka cluster on Docker
+
+Before you get started, here's the Docker Compose file for the tutorial:
+
+docker-compose.yml
+
+services:
+  broker:
+    image: apache/kafka:latest
+    hostname: broker
+    container_name: broker
+    ports:
+      - 9092:9092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_NODE_ID: 1
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@broker:29093
+      KAFKA_LISTENERS: PLAINTEXT://broker:29092,CONTROLLER://broker:29093,PLAINTEXT_HOST://0.0.0.0:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+	  
+	  
+
+***Running Kafka on Docker from Ubuntu console
+
+To run Kafka on Docker, first confirm your Docker Desktop is running. Then execute the following command from the kafka-on-docker directory:
+
+$docker compose up -d
+
+The -d flag runs the docker container in detached mode which is similar to running Unix commands in the background by appending &. To confirm the container is running, run this command:
+
+$docker logs broker
+
+And if everything is running ok you'll see something like this at this at the end of screen output:
+
+[2024-05-21 17:30:58,752] INFO Awaiting socket connections on broker:29092. (kafka.network.DataPlaneAcceptor)
+[2024-05-21 17:30:58,754] INFO Awaiting socket connections on 0.0.0.0:9092. (kafka.network.DataPlaneAcceptor)
+[2024-05-21 17:30:58,756] INFO [BrokerServer id=1] Waiting for all of the authorizer futures to be completed (kafka.server.BrokerServer)
+[2024-05-21 17:30:58,756] INFO [BrokerServer id=1] Finished waiting for all of the authorizer futures to be completed (kafka.server.BrokerServer)
+[2024-05-21 17:30:58,756] INFO [BrokerServer id=1] Waiting for all of the SocketServer Acceptors to be started (kafka.server.BrokerServer)
+[2024-05-21 17:30:58,756] INFO [BrokerServer id=1] Finished waiting for all of the SocketServer Acceptors to be started (kafka.server.BrokerServer)
+[2024-05-21 17:30:58,756] INFO [BrokerServer id=1] Transition from STARTING to STARTED (kafka.server.BrokerServer)
+[2024-05-21 17:30:58,757] INFO Kafka version: 3.7.0 (org.apache.kafka.common.utils.AppInfoParser)
+[2024-05-21 17:30:58,757] INFO Kafka commitId: 2ae524ed625438c5 (org.apache.kafka.common.utils.AppInfoParser)
+[2024-05-21 17:30:58,757] INFO Kafka startTimeMs: 1716312658757 (org.apache.kafka.common.utils.AppInfoParser)
+[2024-05-21 17:30:58,758] INFO [KafkaRaftServer nodeId=1] Kafka Server started (kafka.server.KafkaRaftServer)
+
+you should also see kafka is running from docker desktop
+
+Now let's produce and consume a message! To produce a message, let's open a command terminal on the Kafka container:
+
+$docker exec -it -w /opt/kafka/bin broker sh
+
+Then create a topic:
+
+$./kafka-topics.sh --create --topic my-topic --bootstrap-server broker:29092
+
+The result of this command should be
+
+Created topic my-topic.
+
+
+Important
+Take note of the --bootstrap-server flag. Because you're connecting to Kafka inside the container, you use broker:29092 for the host:port. If you were to use a client outside the container to connect to Kafka, a producer application running on your laptop for example, you'd use localhost:9092 instead.
+
+Next, start a console producer with this command:
+
+$./kafka-console-producer.sh  --topic my-topic --bootstrap-server broker:29092
+
+At the prompt copy each line one at time and paste into the terminal hitting enter key after each one:
+
+All streams
+lead to Kafka
+
+Then enter a CTRL-C to close the producer.
+
+Now let's consume the messages with this command:
+
+$./kafka-console-consumer.sh --topic my-topic --from-beginning --bootstrap-server broker:29092
+
+And you should see the following:
+
+All streams
+lead to Kafka
+
+Enter a CTRL-C to close the consumer and then type 
+
+$exit 
+
+to close the docker shell.
+
+To shut down the container, run
+
+$docker compose down -v
