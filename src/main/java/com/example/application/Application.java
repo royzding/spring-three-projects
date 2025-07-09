@@ -1,5 +1,6 @@
 package com.example.application;
 
+import com.vaadin.flow.component.dependency.JsModule;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -13,8 +14,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  *  login: admin/userpass
  */
 @SpringBootApplication
-//@JsModule("@vaadin/vaadin-lumo-styles/presets/compact.js")
-//@Theme("flowcrmtutorial")
+@JsModule("@vaadin/vaadin-lumo-styles/presets/compact.js")
 public class Application extends SpringBootServletInitializer { //implements AppShellConfigurator {
 /*
     @Override

@@ -32,7 +32,7 @@ public class MainLayout extends AppLayout {
 
         Button logout = new Button("Log out", e -> securityService.logout());
 
-        HorizontalLayout header = new HorizontalLayout(
+        HorizontalLayout header = new HorizontalLayout(new Icon(VaadinIcon.HOME),
           new DrawerToggle(),
                 logo,
                 logout
