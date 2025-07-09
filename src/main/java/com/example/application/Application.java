@@ -13,6 +13,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  *  login: admin/userpass
  */
 @SpringBootApplication
+//@JsModule("@vaadin/vaadin-lumo-styles/presets/compact.js")
+//@Theme("flowcrmtutorial")
 public class Application extends SpringBootServletInitializer { //implements AppShellConfigurator {
 /*
     @Override

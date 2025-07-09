@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Visa",
+    "accountNumber": "1234"
+  },
+  {
+    "id": 2,
+    "name": "Master",
+    "accountNumber": "1235"
+  },
+  {
+    "id": 3,
+    "name": "American Express",
+    "accountNumber": "1236"
+  }
+]

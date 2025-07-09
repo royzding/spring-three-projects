@@ -23,6 +23,7 @@ public class BroadcasterView extends Div {
     Registration broadcasterRegistration;
 
     public BroadcasterView() {
+        addClassName("broadcaster-view");
         TextField message = new TextField();
         Button send = new Button("Send", e -> {
             Broadcaster.broadcast(message.getValue());
