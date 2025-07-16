@@ -61,7 +61,8 @@ public class MainLayout extends AppLayout {
             //new RouterLink("Pushy", PushyView.class),
             createMenuLink(PushyView.class, "Pushy", new Icon(VaadinIcon.CLOCK)),
             new RouterLink("RouteWithParametersView", RouteWithParametersView.class),
-            new RouterLink("Broadcaster", BroadcasterView.class)
+            new RouterLink("Broadcaster", BroadcasterView.class),
+            new RouterLink("About", AboutView.class)
         ));
     }
 
