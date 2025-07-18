@@ -51,18 +51,20 @@ public class MainLayout extends AppLayout {
         RouterLink listLink = new RouterLink("List", ListView.class);
         listLink.setHighlightCondition(HighlightConditions.sameLocation()); 
 
-        addToDrawer(new VerticalLayout( 
-            //listLink,
-            createMenuLink(ListView.class, "List", new Icon(VaadinIcon.LIST)),
-            //new RouterLink("Components", ComponentsView.class),
-            createMenuLink(ComponentsView.class, "Components", LumoIcon.CLOCK.create()),
-            //new RouterLink("Dashboard", DashboardView.class),
-            createMenuLink(DashboardView.class, "Dashboard", new Icon(VaadinIcon.DASHBOARD)),
-            //new RouterLink("Pushy", PushyView.class),
-            createMenuLink(PushyView.class, "Pushy", new Icon(VaadinIcon.CLOCK)),
-            new RouterLink("RouteWithParametersView", RouteWithParametersView.class),
-            new RouterLink("Broadcaster", BroadcasterView.class),
-            new RouterLink("About", AboutView.class)
+        addToDrawer(new VerticalLayout(
+                //listLink,
+                createMenuLink(ListView.class, "List", new Icon(VaadinIcon.LIST)),
+                //new RouterLink("Components", ComponentsView.class),
+                createMenuLink(ComponentsView.class, "Components", LumoIcon.CLOCK.create()),
+                //new RouterLink("Dashboard", DashboardView.class),
+                createMenuLink(DashboardView.class, "Dashboard", new Icon(VaadinIcon.DASHBOARD)),
+                //new RouterLink("Pushy", PushyView.class),
+                createMenuLink(PushyView.class, "Pushy", new Icon(VaadinIcon.CLOCK)),
+                new RouterLink("RouteWithParametersView", RouteWithParametersView.class),
+                new RouterLink("Broadcaster", BroadcasterView.class),
+                new RouterLink("UIEventBus", UIEventBusView.class),
+                new RouterLink("MVPPersonView", PersonViewImpl.class),
+                new RouterLink("About", AboutView.class)
         ));
     }
 

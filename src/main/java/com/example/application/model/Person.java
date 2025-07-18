@@ -1,6 +1,5 @@
 package com.example.application.model;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,10 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Card {
-
-    private Integer id;
-    private String name;
-    private String accountNumber;
-
+public class Person {
+    private String firstName;
+    private String lastName;
 }

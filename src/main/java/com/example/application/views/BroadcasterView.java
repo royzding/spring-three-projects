@@ -1,6 +1,7 @@
 package com.example.application.views;
 
 import com.example.application.config.Broadcaster;
+import com.example.application.util.ViewsUtil;
 import com.vaadin.flow.component.AttachEvent;
 import com.vaadin.flow.component.DetachEvent;
 import com.vaadin.flow.component.UI;
@@ -20,6 +21,7 @@ import jakarta.annotation.security.PermitAll;
 @PageTitle("Broadcaster | Vaadin CRM")
 public class BroadcasterView extends Div {
     VerticalLayout messages = new VerticalLayout();
+    UI ui;
     Registration broadcasterRegistration;
 
     public BroadcasterView() {
@@ -37,15 +39,22 @@ public class BroadcasterView extends Div {
 
     @Override
     protected void onAttach(AttachEvent attachEvent) {
-        UI ui = attachEvent.getUI();
-        broadcasterRegistration = Broadcaster.register(newMessage -> {
-            ui.access(() -> messages.add(new Span(newMessage)));
-        });
+        ui = attachEvent.getUI();
+        broadcasterRegistration = Broadcaster.register(
+                //newMessage -> {ui.access(() -> messages.add(new Span(newMessage)));}
+                this::update
+        );
     }
 
     @Override
     protected void onDetach(DetachEvent detachEvent) {
         broadcasterRegistration.remove();
         broadcasterRegistration = null;
+    }
+
+    private void update(String value) {
+
+        ViewsUtil.uiAccessCommand(ui,() -> messages.add(new Span(value)));
+
     }
 }
