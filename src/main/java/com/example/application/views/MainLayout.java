@@ -63,7 +63,9 @@ public class MainLayout extends AppLayout {
                 new RouterLink("RouteWithParametersView", RouteWithParametersView.class),
                 new RouterLink("Broadcaster", BroadcasterView.class),
                 new RouterLink("UIEventBus", UIEventBusView.class),
-                new RouterLink("MVPPersonView", PersonViewImpl.class),
+                new RouterLink("ModelViewPresenter", PersonViewImpl.class),
+                new RouterLink("FirstSharedMsg", FirstSharedMsgView.class),
+                new RouterLink("SecondSharedMsg", SecondSharedMsgView.class),
                 new RouterLink("About", AboutView.class)
         ));
     }

@@ -10,24 +10,34 @@ import com.vaadin.flow.spring.annotation.SpringComponent;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.security.PermitAll;
 
+import java.util.function.Supplier;
+
 @PermitAll
 @Route(value = "MVPPersonView", layout = MainLayout.class)
 @PageTitle("MVPPersonView | Vaadin CRM")
 @SpringComponent
 public class PersonViewImpl extends VerticalLayout implements PersonView {
 
-    private TextField firstNameField = new TextField("First Name");
-    private TextField lastNameField = new TextField("Last Name");
-    private Span fullNameLabel = new Span();
-    private Button showFullNameButton = new Button("Show Full Name");
+    private final TextField firstNameField = new TextField("First Name");
+    private final TextField lastNameField = new TextField("Last Name");
+    private final Span fullNameLabel = new Span();
+    private Button showFullNameButton = new Button("Show Full Name from Runnable");
 
     private Runnable showFullNameListener;
+    private Supplier<String> showFullNameSupplier;
 
     public PersonViewImpl() {
-        add(firstNameField, lastNameField, showFullNameButton, fullNameLabel);
+
         showFullNameButton.addClickListener(e -> {
             if (showFullNameListener != null) showFullNameListener.run();
         });
+
+        Button showSupplierButton = new Button("Show Full Name from Supplier");
+        showSupplierButton.addClickListener(e -> {
+            if (showFullNameSupplier != null) showFullNameSupplier.get();
+        });
+
+        add(firstNameField, lastNameField, showFullNameButton, showSupplierButton, fullNameLabel);
     }
 
     @PostConstruct
@@ -53,5 +63,10 @@ public class PersonViewImpl extends VerticalLayout implements PersonView {
     @Override
     public void addShowFullNameListener(Runnable listener) {
         this.showFullNameListener = listener;
+    }
+
+    @Override
+    public void addShowFullNameSupplier(Supplier<String> supplier) {
+        this.showFullNameSupplier = supplier;
     }
 }
